@@ -35,14 +35,12 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         Group root = new Group();
         DataServiceManager dataServiceManager = new DataServiceManager();
-        new ImageUI().setupUI(root,stage);
-        new OpenImageUI().setupUI(root,stage);
-
+        new LoginUI().setupUI(root, stage);
 
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

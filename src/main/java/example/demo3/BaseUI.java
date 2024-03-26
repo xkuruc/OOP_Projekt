@@ -11,6 +11,16 @@ public abstract class BaseUI extends DataServiceManager implements UISetup{
     public void setupUI( Group root, Stage stage) {
         setupContent(root, stage);
     }
+
+    @Override
+    public void stageSetup(Stage stage, Scene scene, int width, int height){
+        stage.setTitle(getTitle());
+        stage.setWidth(width);
+        stage.setHeight(height);
+        stage.setResizable(false);
+        stage.setScene(scene);
+    }
+
     protected abstract String getTitle();
 
 }

@@ -55,15 +55,13 @@ public class ImageUI extends BaseUI{
         //returnUserService().setAktualnyPouzivatel(new Profesional("Marek"));
         userService.setAktualnyPouzivatel(new Profesional("Marek"));
         Scene scene = new Scene(root, Color.GRAY);
-        stage.setTitle(getTitle());
-        stage.setWidth(800);
-        stage.setHeight(800);
-        stage.setResizable(false);
 
+        stageSetup(stage, scene, 800, 800);
         ScrollPanelService scrollPanelService = new ScrollPanelService(800,800);
         ScrollPane scrollPane = scrollPanelService.createScrollPane();
         root.getChildren().add(scrollPane);
-        stage.setScene(scene);
+
+        stage.show();
     }
 
     @Override
