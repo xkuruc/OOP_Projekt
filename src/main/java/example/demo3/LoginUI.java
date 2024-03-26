@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -14,6 +15,7 @@ public class LoginUI extends BaseUI{
     private VBox vbox;
     private Scene scene;
     private ToggleGroup toggleGroup;
+    private TextField nameField;
     public LoginUI(){
         this.vbox = new VBox();
         this.scene = new Scene(vbox, Color.GRAY);
@@ -28,8 +30,8 @@ public class LoginUI extends BaseUI{
     protected void setupContent(Group root, Stage stage) {
         stageSetup(stage, getScene(), 400, 400);
         createRadioButton();
+        createNameInput();
         createLoginButton(stage);
-
 
         stage.show();
     }
@@ -50,16 +52,35 @@ public class LoginUI extends BaseUI{
         Button button = new Button("LOGIN");
 
         button.setOnAction(e -> {
+            logIn(stage);
+        });
+        getVbox().getChildren().add(button);
+    }
+    public void createNameInput(){
+        TextField nameField = new TextField();
+        nameField.setPromptText("Prihlasovacie meno");
+        vbox.getChildren().add(nameField);
+        this.nameField = nameField;
+    }
+
+    private void logIn(Stage stage){
+
+        //tu by som mohol zrobit že vyhodi vlastny error nejaky
+        if(nameField.getText().isEmpty() || toggleGroup.getSelectedToggle() == null){
+            return;
+        }else{
             stage.close();
+            Uzivatel uzivatel = Factory.createUserFactory(((RadioButton) toggleGroup.getSelectedToggle()).getText())
+                    .createUzivatel(nameField.getText().toString());
+            userService.updateData(uzivatel);
+            userService.setAktualnyPouzivatel(uzivatel);
 
             Stage newStage = new Stage();
             Group newRoot = new Group();
             new ImageUI().setupUI(newRoot,newStage);
             new OpenImageUI().setupUI(newRoot,newStage);
-        });
-        getVbox().getChildren().add(button);
+        }
     }
-
     @Override
     protected String getTitle() {
         return "LOGIN";

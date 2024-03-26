@@ -25,6 +25,16 @@ public class UserService implements  DataService<Uzivatel>{
     public void SaveData(Uzivatel data, Stage stage){
 
     }
+    public void updateData(Uzivatel uzivatel){
+        for(Uzivatel uzivatel1 : uzivatelArrayList){
+            if(uzivatel1.getMeno().equals(uzivatel.getMeno())){
+                uzivatel1.setRola(uzivatel.getRola());
+                uzivatel1.setLajk(uzivatel.getLajk());
+                return;
+            }
+        }
+        PridajObjekt(uzivatel);
+    }
     public Uzivatel getAktualnyPouzivatel(){
         return this.aktualnyPouzivatel;
     }
