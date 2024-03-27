@@ -28,7 +28,8 @@ public class LoginUI extends BaseUI{
     }
     @Override
     protected void setupContent(Group root, Stage stage) {
-        stageSetup(stage, getScene(), 400, 400);
+        stageSetup(stage, 400, 400);
+        stage.setScene(getScene());
         createRadioButton();
         createNameInput();
         createLoginButton(stage);
@@ -75,10 +76,8 @@ public class LoginUI extends BaseUI{
             userService.updateData(uzivatel);
             userService.setAktualnyPouzivatel(uzivatel);
 
-            Stage newStage = new Stage();
-            Group newRoot = new Group();
-            new ImageUI().setupUI(newRoot,newStage);
-            new OpenImageUI().setupUI(newRoot,newStage);
+            MainUI mainUI = new MainUI();
+            mainUI.MainUISetup();
         }
     }
     @Override

@@ -7,6 +7,6 @@ import javafx.stage.Stage;
 public interface UISetup {
     void setupUI(Group root,Stage stage);
 
-    void stageSetup(Stage stage, Scene scene, int width, int height);
+    void stageSetup(Stage stage, int width, int height);
 
 }

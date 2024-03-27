@@ -24,7 +24,7 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
     //private String destination;
 
     public ImageService(){
-        destination = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky";
+        destination = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "example/demo3/obrasky";
         imageEntityArrayList = new ArrayList<>();
         VytvorStatickeObjekty();
     }

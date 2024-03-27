@@ -34,7 +34,8 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Group root = new Group();
-        DataServiceManager dataServiceManager = new DataServiceManager();
+        DataServiceManager.root = root;
+        DataServiceManager.stage = stage;
         new LoginUI().setupUI(root, stage);
 
         stage.show();
