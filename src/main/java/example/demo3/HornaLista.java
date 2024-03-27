@@ -20,10 +20,15 @@ public class HornaLista extends BaseUI{
 
     @Override
     protected void setupContent(Group root, Stage stage) {
-        ButtonFactory buttonFactory = new OpenImageButtonFactory();
-        Button openButton = buttonFactory.createButton();
+        ButtonFactory openImageButtonFactory = new OpenImageButtonFactory();
+        Button openButton = openImageButtonFactory.createButton();
         VBox.setMargin(openButton, new Insets(0, 10, 0, 10));
         vbox.getChildren().add(openButton);
+
+        ButtonFactory logOutButtonFactory = new LogOutButtonFactory();
+        Button logOutButton = logOutButtonFactory.createButton();
+        VBox.setMargin(logOutButton, new Insets(0, 10, 0, 10));
+        vbox.getChildren().add(logOutButton);
     }
 
     @Override

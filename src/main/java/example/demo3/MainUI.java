@@ -8,25 +8,25 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class MainUI {
+public class MainUI extends DataServiceManager{
     private VBox vbox;
     private Scene scene;
-    private Stage Stage;
-    private Group Root;
+    //private Stage Stage;
+    //private Group Root;
     public MainUI(){
         this.vbox = new VBox();
         this.scene = new Scene(vbox, Color.GRAY);
-        this.Stage = new Stage();
-        this.Root =  new Group();
+        //this.Stage = new Stage();
+        //this.Root =  new Group();
     }
     public void MainUISetup(){
         BaseUI hornaLista = new HornaLista(scene, vbox);
-        hornaLista.setupUI(this.Root, this.Stage);
+        hornaLista.setupUI(root, stage);
 
         BaseUI imageUI = new ImageUI(scene, vbox);
-        imageUI.setupUI(this.Root, this.Stage);
+        imageUI.setupUI(root, stage);
 
-        Stage.setScene(scene);
-        Stage.show();
+        stage.setScene(scene);
+        stage.show();
     }
 }

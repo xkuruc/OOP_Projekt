@@ -51,7 +51,7 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
                     j=0;
                 }
                 System.out.println(fileNames[i]);
-                ImageEntity image = new ImageEntity(autory[0], "", String.valueOf(fileNames[i]));
+                ImageEntity image = new ImageEntity(autory[j], "", String.valueOf(fileNames[i]));
                 PridajObjekt(image);
             }
         } catch (IOException e) {
@@ -64,7 +64,6 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
 
     public void SaveData(ImageEntity data, Stage stage){
         try {
-
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg"));
             File file = fileChooser.showOpenDialog(stage);
@@ -74,6 +73,7 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
                     Path destination = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky", data.getUrl());
                     Files.copy(file.toPath(), destination);
                     System.out.println("Obrazok bol ulozeny");
+                    PridajObjekt(new ImageEntity(data.getAutor(), "",String.valueOf(file.getName())));
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }

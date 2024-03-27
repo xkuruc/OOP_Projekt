@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,7 +23,6 @@ public class ImageUI extends BaseUI{
             this.width = width;
             this.height = height;
             this.scrollPane = new ScrollPane();
-
         }
         public ScrollPane createScrollPane(){
             this.scrollPane.setPrefSize(this.width, this.height);
@@ -37,6 +37,11 @@ public class ImageUI extends BaseUI{
                     System.err.println("Couldn't find file: " + imageEntity.getUrl());
                     continue;
                 }
+                System.out.println("!!!"+imageEntity.getAutor());
+                Label label = new Label(imageEntity.getAutor());
+                label.setStyle("-fx-font-size: 50px; -fx-font-weight: bold; -fx-padding: 10px 10px 0px " + (scrollPane.getPrefWidth()/2
+                        -label.getLayoutBounds().getWidth()/2 -150)+ "px" );
+                content.getChildren().add(label);
 
                 Image image = new Image(imageUrl.toExternalForm());
                 ImageView imageView = new ImageView(image);
@@ -45,13 +50,9 @@ public class ImageUI extends BaseUI{
                 VBox.setMargin(imageView, new Insets(25, 0, 25, 150));
                 content.getChildren().add(imageView);
             }
-
             scrollPane.setContent(content);
             return scrollPane;
         }
-
-
-
     }
 
     private Scene scene;

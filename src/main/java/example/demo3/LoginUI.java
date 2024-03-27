@@ -33,7 +33,6 @@ public class LoginUI extends BaseUI{
         createRadioButton();
         createNameInput();
         createLoginButton(stage);
-
         stage.show();
     }
     public void createRadioButton(){

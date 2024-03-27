@@ -17,17 +17,6 @@ public class OpenImageButtonFactory extends ButtonFactory{
         });
         return openButton;
     }
-    /*@Override
-    protected void setupContent(Group root, Stage stage) {
-        //returnUserService().setAktualnyPouzivatel(new Profesional("Marek"));
-        Button openButton = new Button(getTitle());
-        openButton.setOnAction(e -> {
-            //returnImageService().SaveData(new ImageEntity(returnUserService().getAktualnyPouzivatel().getMeno(), "", ""), stage);
-            imageService.SaveData(new ImageEntity(userService.getAktualnyPouzivatel().getMeno(), "", ""), stage);
-            System.out.println(userService.getAktualnyPouzivatel().getMeno());
-        });
-        root.getChildren().add(openButton);
-    }*/
 
     protected String getTitle() {
         return "Otvoriť...";
