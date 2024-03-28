@@ -44,13 +44,11 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
                     .map(Path::toString) // Convert Path to String
                     .toArray(String[]::new);
 
-
-            System.out.println(files.length);
             for(int i=0, j=0; i<files.length;i++,j++){
                 if(j>=autory.length){
                     j=0;
                 }
-                System.out.println(fileNames[i]);
+
                 ImageEntity image = new ImageEntity(autory[j], "", String.valueOf(fileNames[i]));
                 PridajObjekt(image);
             }

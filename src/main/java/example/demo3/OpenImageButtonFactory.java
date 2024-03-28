@@ -10,15 +10,14 @@ public class OpenImageButtonFactory extends ButtonFactory{
     public Button createButton(){
         Button openButton = new Button(getTitle());
         openButton.setOnAction(e -> {
-            //returnImageService().SaveData(new ImageEntity(returnUserService().getAktualnyPouzivatel().getMeno(), "", ""), stage);
             imageService.SaveData(new ImageEntity(userService.getAktualnyPouzivatel().getMeno(), "", ""), stage);
-            System.out.println(userService.getAktualnyPouzivatel().getMeno()); //asi neprintuje dobre meno dopici
-            root.getChildren().add(openButton);
+            //System.out.println(userService.getAktualnyPouzivatel().getMeno());
         });
+        root.getChildren().add(openButton);
         return openButton;
     }
 
     protected String getTitle() {
-        return "Otvoriť...";
+        return "Pridať obrázok";
     }
 }

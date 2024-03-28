@@ -24,6 +24,25 @@ public class ImageUI extends BaseUI{
             this.height = height;
             this.scrollPane = new ScrollPane();
         }
+
+        public Label createLabel(String text){
+            Label label = new Label(text);
+            label.setStyle("-fx-font-size: 50px; -fx-font-weight: bold; -fx-padding: 10px 10px 0px " + (scrollPane.getPrefWidth()/2
+                    -label.getLayoutBounds().getWidth()/2 -150)+ "px" );
+            return label;
+        }
+
+        public ImageView createImageView(String imageUrl){
+            Image image = new Image(imageUrl);
+            ImageView imageView = new ImageView(image);
+            imageView.setFitWidth(imageService.getWidth());
+            imageView.setFitHeight(imageService.getHeight());
+            VBox.setMargin(imageView, new Insets(25, 0, 25, 150));
+            return imageView;
+        }
+
+
+
         public ScrollPane createScrollPane(){
             this.scrollPane.setPrefSize(this.width, this.height);
             this.scrollPane.setFitToWidth(true);
@@ -34,20 +53,13 @@ public class ImageUI extends BaseUI{
                 URL imageUrl = getClass().getResource("obrasky/" + imageEntity.getUrl());
 
                 if (imageUrl == null) {
-                    System.err.println("Couldn't find file: " + imageEntity.getUrl());
+                    System.err.println("Nenasiel som subor: " + imageEntity.getUrl());
                     continue;
                 }
-                System.out.println("!!!"+imageEntity.getAutor());
-                Label label = new Label(imageEntity.getAutor());
-                label.setStyle("-fx-font-size: 50px; -fx-font-weight: bold; -fx-padding: 10px 10px 0px " + (scrollPane.getPrefWidth()/2
-                        -label.getLayoutBounds().getWidth()/2 -150)+ "px" );
+                Label label = createLabel(imageEntity.getAutor());
                 content.getChildren().add(label);
 
-                Image image = new Image(imageUrl.toExternalForm());
-                ImageView imageView = new ImageView(image);
-                imageView.setFitWidth(imageService.getWidth());
-                imageView.setFitHeight(imageService.getHeight());
-                VBox.setMargin(imageView, new Insets(25, 0, 25, 150));
+                ImageView imageView = createImageView(imageUrl.toExternalForm());
                 content.getChildren().add(imageView);
             }
             scrollPane.setContent(content);
