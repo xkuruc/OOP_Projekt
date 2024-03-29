@@ -1,15 +1,13 @@
 package example.demo3;
 
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
+import example.demo3.events.DataServiceManager;
 import javafx.stage.Stage;
 
 public abstract class BaseUI extends DataServiceManager implements UISetup{
-    protected abstract void setupContent(Group root, Stage stage);
+    protected abstract void setupContent(Stage stage);
     @Override
-    public void setupUI( Group root, Stage stage) {
-        setupContent(root, stage);
+    public void setupUI(Stage stage) {
+        setupContent(stage);
     }
 
     @Override
@@ -18,7 +16,6 @@ public abstract class BaseUI extends DataServiceManager implements UISetup{
         stage.setWidth(width);
         stage.setHeight(height);
         stage.setResizable(false);
-
     }
 
     protected abstract String getTitle();

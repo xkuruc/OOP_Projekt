@@ -1,5 +1,6 @@
-package example.demo3;
+package example.demo3.button;
 
+import example.demo3.events.EventHandler;
 import javafx.scene.control.Button;
 
 public class TestButtonFactory extends ButtonFactory{

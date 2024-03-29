@@ -1,8 +1,7 @@
-package example.demo3;
+package example.demo3.button;
 
-import javafx.scene.Group;
+import example.demo3.events.EventHandler;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 public class LogOutButtonFactory extends ButtonFactory {
     public Button createButton(EventHandler eventHandler) {

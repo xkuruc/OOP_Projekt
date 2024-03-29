@@ -1,19 +1,14 @@
-package example.demo3;
+package example.demo3.events;
 
-import example.demo3.pouzivatelia.Amater;
-import example.demo3.pouzivatelia.Novy;
-import example.demo3.pouzivatelia.Profesional;
-import example.demo3.pouzivatelia.Uzivatel;
+import example.demo3.pouzivatelia.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class UserService implements  DataService<Uzivatel>{
+public class UserService extends UserServiceData implements  DataService<Uzivatel>{
     private Uzivatel aktualnyPouzivatel;
-    private ArrayList<Uzivatel> uzivatelArrayList;
     public UserService(){
-        this.uzivatelArrayList = new ArrayList<>();
-        //this.aktualnyPouzivatel = new Profesional("DOPICI");
+        uzivatelArrayList = new ArrayList<>();
     }
     public void setAktualnyPouzivatel(Uzivatel uzivatel){
         this.aktualnyPouzivatel = uzivatel;
@@ -23,9 +18,16 @@ public class UserService implements  DataService<Uzivatel>{
         PridajObjekt(new Amater("Filip"));
         PridajObjekt(new Novy("Peter"));
     }
-    public ArrayList<Uzivatel> returnObjectArray(){
-        return this.uzivatelArrayList;
+
+    public Uzivatel exists(String meno){
+        for(Uzivatel uzivatel : returnObjectArray()){
+            if(uzivatel.getMeno().equals(meno)){
+                return uzivatel;
+            }
+        }
+        return null;
     }
+
     public String SaveData(Uzivatel data, Stage stage){
         return null;
     }

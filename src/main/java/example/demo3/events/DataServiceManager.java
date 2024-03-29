@@ -1,4 +1,4 @@
-package example.demo3;
+package example.demo3.events;
 
 import javafx.scene.Group;
 import javafx.stage.Stage;

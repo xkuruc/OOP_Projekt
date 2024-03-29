@@ -1,9 +1,12 @@
-package example.demo3;
+package example.demo3.events;
 
 import java.util.ArrayList;
 
 public class ImageServiceData {
     public static ArrayList<ImageEntity> imageEntityArrayList;
+    public ArrayList<ImageEntity> returnObjectArray(){
+        return imageEntityArrayList;
+    }
     public static ImageEntity ObrazokDna;
     public static String destination;
     private int width = 500;

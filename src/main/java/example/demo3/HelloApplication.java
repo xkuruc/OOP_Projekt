@@ -1,5 +1,6 @@
 package example.demo3;
 
+import example.demo3.events.DataServiceManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Group;
@@ -14,7 +15,7 @@ public class HelloApplication extends Application {
         Group root = new Group();
         DataServiceManager.root = root;
         DataServiceManager.stage = stage;
-        new LoginUI().setupUI(root, stage);
+        new LoginUI().setupUI(stage);
     }
 
     public static void main(String[] args) {

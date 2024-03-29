@@ -1,4 +1,4 @@
-package example.demo3;
+package example.demo3.pouzivatelia;
 
 public class Factory {
     public static class NovyFactory implements UzivatelFactory{

@@ -1,4 +1,4 @@
-package example.demo3;
+package example.demo3.pouzivatelia;
 
 public class Profesional extends Uzivatel{
     public Profesional(String name){

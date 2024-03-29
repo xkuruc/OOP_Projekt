@@ -1,8 +1,7 @@
-package example.demo3;
+package example.demo3.button;
 
+import example.demo3.events.EventHandler;
 import javafx.scene.control.Button;
-
-import java.util.Random;
 
 public class RandomTestButtonFactory extends ButtonFactory{
     @Override

@@ -1,8 +1,10 @@
-package example.demo3;
+package example.demo3.events;
 
+import example.demo3.ImageUI;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.nio.file.Paths;
 
 public class OpenButtonEvent implements EventHandler{
     private ImageUI imageUI;
@@ -18,8 +20,10 @@ public class OpenButtonEvent implements EventHandler{
 
     @Override
     public void handle() {
-        String path = imageService.SaveData(new ImageEntity(userService.getAktualnyPouzivatel().getMeno(),"",""), stage);
-        URL imageUrl = getClass().getResource("obrasky/" + path);
-        imageUI.addImage(imageUrl.toExternalForm(), userService.getAktualnyPouzivatel().getMeno());
+        ImageEntity imageEntity = new ImageEntity(userService.getAktualnyPouzivatel().getMeno(),"","");
+        String path = imageService.SaveData(imageEntity, stage);
+        imageEntity.setUrl(path);
+        //imageUI.addImage("file:"+Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky", path).toString(), userService.getAktualnyPouzivatel().getMeno());
+        imageUI.addImage(imageEntity);
     }
 }

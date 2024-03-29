@@ -1,5 +1,6 @@
-package example.demo3;
+package example.demo3.events;
 
+import example.demo3.LoginUI;
 import javafx.scene.Group;
 import javafx.stage.Stage;
 

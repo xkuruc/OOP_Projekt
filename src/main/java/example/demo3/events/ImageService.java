@@ -1,18 +1,10 @@
-package example.demo3;
+package example.demo3.events;
 
-import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,9 +20,7 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
         imageEntityArrayList = new ArrayList<>();
         VytvorStatickeObjekty();
     }
-    public ArrayList<ImageEntity> returnObjectArray(){
-        return imageEntityArrayList;
-    }
+
     //aj toto sa da teoreticky zapisat do jednej generickej metody, že vytvorStytickeObjekty(T)
     //a vytvori statických autorov, a statické obrázky
     public void VytvorStatickeObjekty(){

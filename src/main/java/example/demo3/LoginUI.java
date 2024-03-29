@@ -1,12 +1,12 @@
 package example.demo3;
 
-import javafx.scene.Group;
+import example.demo3.pouzivatelia.Factory;
+import example.demo3.pouzivatelia.Uzivatel;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -20,6 +20,7 @@ public class LoginUI extends BaseUI{
         this.vbox = new VBox();
         this.scene = new Scene(vbox, Color.GRAY);
     }
+
     public VBox getVbox(){
         return this.vbox;
     }
@@ -27,14 +28,22 @@ public class LoginUI extends BaseUI{
         return this.scene;
     }
     @Override
-    protected void setupContent(Group root, Stage stage) {
+    protected void setupContent(Stage stage) {
         stageSetup(stage, 400, 400);
         stage.setScene(getScene());
         createRadioButton();
         createNameInput();
+
         createLoginButton(stage);
+
         stage.show();
     }
+
+
+    public void handle() {
+        logIn(stage);
+    }
+
     public void createRadioButton(){
         ToggleGroup toggleGroup = new ToggleGroup();
         RadioButton radioButton1 = new RadioButton("Profesional");
@@ -52,7 +61,8 @@ public class LoginUI extends BaseUI{
         Button button = new Button("LOGIN");
 
         button.setOnAction(e -> {
-            logIn(stage);
+            handle();
+            //logIn(stage);
         });
         getVbox().getChildren().add(button);
     }
@@ -70,9 +80,14 @@ public class LoginUI extends BaseUI{
             return;
         }else{
             stage.close();
-            Uzivatel uzivatel = Factory.createUserFactory(((RadioButton) toggleGroup.getSelectedToggle()).getText())
-                    .createUzivatel(nameField.getText().toString());
-            userService.updateData(uzivatel);
+            Uzivatel uzivatel;
+            if( (uzivatel = userService.exists(nameField.getText().toString())) == null){
+                uzivatel = Factory.createUserFactory(((RadioButton) toggleGroup.getSelectedToggle()).getText())
+                        .createUzivatel(nameField.getText().toString());
+                userService.PridajObjekt(uzivatel);
+                System.out.println(uzivatel.getMeno()+"!!!!!!!!");
+            }
+            //userService.updateData(uzivatel);
             userService.setAktualnyPouzivatel(uzivatel);
 
             MainUI mainUI = new MainUI();

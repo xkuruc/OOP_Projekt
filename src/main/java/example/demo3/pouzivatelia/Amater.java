@@ -1,4 +1,4 @@
-package example.demo3;
+package example.demo3.pouzivatelia;
 
 public class Amater extends Uzivatel{
     public Amater(String name){
