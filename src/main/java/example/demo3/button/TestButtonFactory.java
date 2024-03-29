@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 
 public class TestButtonFactory extends ButtonFactory{
     @Override
-    public Button createButton(){
+    public Button createButton(EventHandler eventHandler){
         Button TestButton = new Button(getTitle());
         TestButton.setOnAction(e -> {
             Vyhodnotit();

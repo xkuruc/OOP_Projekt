@@ -1,5 +1,9 @@
 package example.demo3;
 
+import example.demo3.pouzivatelia.Amater;
+import example.demo3.pouzivatelia.Novy;
+import example.demo3.pouzivatelia.Profesional;
+import example.demo3.pouzivatelia.Uzivatel;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -22,8 +26,8 @@ public class UserService implements  DataService<Uzivatel>{
     public ArrayList<Uzivatel> returnObjectArray(){
         return this.uzivatelArrayList;
     }
-    public void SaveData(Uzivatel data, Stage stage){
-
+    public String SaveData(Uzivatel data, Stage stage){
+        return null;
     }
     public void updateData(Uzivatel uzivatel){
         for(Uzivatel uzivatel1 : uzivatelArrayList){

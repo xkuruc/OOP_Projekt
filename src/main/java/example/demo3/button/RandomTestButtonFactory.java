@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class RandomTestButtonFactory extends ButtonFactory{
     @Override
-    public Button createButton(){
+    public Button createButton(EventHandler eventHandler){
         Button RandomTestButton = new Button(getTitle());
         RandomTestButton.setOnAction(e -> {
             RandomVyhodnotit();

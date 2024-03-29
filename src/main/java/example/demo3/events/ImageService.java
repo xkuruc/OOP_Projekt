@@ -60,7 +60,7 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
     //to by sa mohlo a prepisat na ze pridajObjekt, bude to len genericke
     //a prida aj pouzivatela aj obrazok pohode ne
 
-    public void SaveData(ImageEntity data, Stage stage){
+    public String SaveData(ImageEntity data, Stage stage){
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg"));
@@ -71,7 +71,8 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
                     Path destination = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky", data.getUrl());
                     Files.copy(file.toPath(), destination);
                     System.out.println("Obrazok bol ulozeny");
-                    PridajObjekt(new ImageEntity(data.getAutor(), "",String.valueOf(file.getName())));
+                    PridajObjekt(new ImageEntity(data.getAutor(), "",(file.getName())));
+                    return file.getName();
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
@@ -79,6 +80,7 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
         } catch (Exception e) {
             System.out.println("Pruser");
         }
+        return null;
     };
 
     public void ReturnData(){

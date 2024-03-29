@@ -5,22 +5,13 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class LogOutButtonFactory extends ButtonFactory {
-    public Button createButton() {
+    public Button createButton(EventHandler eventHandler) {
         Button logOutButton = new Button(getTitle());
         logOutButton.setOnAction(e -> {
-            LogOut();
+            eventHandler.handle();
         });
         root.getChildren().add(logOutButton);
         return logOutButton;
-    }
-    private void LogOut(){
-        stage.close();
-        userService.setAktualnyPouzivatel(null);
-        DataServiceManager.root = new Group();
-        DataServiceManager.stage = new Stage();
-        //DataServiceManager.imageService = new ImageService();
-        //DataServiceManager.userService = new UserService();
-        new LoginUI().setupUI(root, stage);
     }
     //@Override
     protected String getTitle() {

@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 
 public class ZobrazitVyhodnotenieButtonFactory extends ButtonFactory {
     @Override
-    public Button createButton(){
+    public Button createButton(EventHandler eventHandler){
         Button VyhodnotenieButton = new Button(getTitle());
         VyhodnotenieButton.setOnAction(e -> {
             ZobrazitVyhodnotenie();

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface DataService<T> {
     public ArrayList<T> returnObjectArray();
-    public void SaveData(T data, Stage stage);
+    public String SaveData(T data, Stage stage);
     public void VytvorStatickeObjekty(); //toto vytvori natvrdo nejakých začiatočných použivateľov a nejaké obrázky
 
     /*public void ReadData(String database, String collection);
