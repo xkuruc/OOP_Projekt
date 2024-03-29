@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ImageService extends ImageServiceData implements DataService<ImageEntity>{
-    //private ArrayList<ImageEntity> imageEntityArrayList;
-    //private String destination;
-
     public ImageService(){
         destination = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "example/demo3/obrasky";
         imageEntityArrayList = new ArrayList<>();

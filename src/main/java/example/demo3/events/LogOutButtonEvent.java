@@ -18,6 +18,6 @@ public class LogOutButtonEvent implements EventHandler{
         userService.setAktualnyPouzivatel(null);
         DataServiceManager.root = new Group();
         DataServiceManager.stage = new Stage();
-        new LoginUI().setupUI(stage);
+        new LoginUI().setupUI(DataServiceManager.stage);
     }
 }
