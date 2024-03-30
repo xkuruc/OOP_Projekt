@@ -1,4 +1,4 @@
-package example.demo3;
+package example.demo3.UI;
 
 import example.demo3.pouzivatelia.Factory;
 import example.demo3.pouzivatelia.Uzivatel;

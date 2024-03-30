@@ -1,10 +1,7 @@
 package example.demo3.events;
 
-import example.demo3.ImageUI;
+import example.demo3.UI.ImageUI;
 import javafx.stage.Stage;
-
-import java.net.URL;
-import java.nio.file.Paths;
 
 public class OpenButtonEvent implements EventHandler{
     private ImageUI imageUI;

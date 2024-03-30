@@ -1,0 +1,7 @@
+moje patterny:
+- Strategy pattern na EventHandler
+- factory pattern na vytvorenie roznych uzivatelov,
+- factory pattern na vytvorenie roznych buttonov
+- template pattern vo BaseUI, na vytvorenie rozhrania
+    - ale akoze može sa to ratat aj ako strategy pattern, lebo pouzim tam aj funkcie zo Interface (strategy), aj zo abstraktnej classy(Template)
+- strategy pattern na ImageUI, tiez sa to mozno moze ratat ako Template asi

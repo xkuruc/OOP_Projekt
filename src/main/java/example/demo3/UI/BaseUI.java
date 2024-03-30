@@ -1,8 +1,11 @@
-package example.demo3;
+package example.demo3.UI;
 
 import example.demo3.events.DataServiceManager;
 import javafx.stage.Stage;
 
+//aby si len vedel, keby si neiplmementoval tu UISetup interface, tak to je template design pattern
+//ze zrobis si takuto abstraktnu nadtriedu, a jej deti iba prepisuju jej metody, a potom vytvoris instanciu podtriedy ale na BaseUI (na nadtriede),
+// a zavolas funkciu, ktoru nemaju zadefinovanu, ako teraz setupUI, a sa zavola ich vlastna implementacia setupContent
 public abstract class BaseUI extends DataServiceManager implements UISetup{
     protected abstract void setupContent(Stage stage);
     @Override

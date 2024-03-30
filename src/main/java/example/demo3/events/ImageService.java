@@ -47,6 +47,7 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
     //to by sa mohlo a prepisat na ze pridajObjekt, bude to len genericke
     //a prida aj pouzivatela aj obrazok pohode ne
 
+    //som zistil ze dostanes error, ak pridas dva tie iste obrasky, s tym istym nazvom no
     public String SaveData(ImageEntity data, Stage stage){
         try {
             FileChooser fileChooser = new FileChooser();
@@ -56,11 +57,13 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
                 try {
                     data.setUrl(file.getName());
                     Path destination = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky", data.getUrl());
+                    //String destination = "file:"+Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky", data.getUrl());
                     Files.copy(file.toPath(), destination);
                     System.out.println("Obrazok bol ulozeny");
                     PridajObjekt(new ImageEntity(data.getAutor(), "",(file.getName())));
                     return file.getName();
                 } catch (IOException ioException) {
+                    System.out.println("TUSOM ");
                     ioException.printStackTrace();
                 }
             }
