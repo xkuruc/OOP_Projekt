@@ -1,5 +1,6 @@
 package example.demo3.UI;
 
+import example.demo3.events.EventHandler;
 import example.demo3.events.ImageEntity;
 import example.demo3.pouzivatelia.Profesional;
 import example.demo3.pouzivatelia.Uzivatel;
@@ -65,20 +66,17 @@ public class ProfesionalImageUI extends ImageUI{
     public ToggleGroup createHodnotenie(HBox hBox, ImageEntity imageEntity){
         ToggleGroup toggleGroup = new ToggleGroup();
         for(int i=0; i<5; i++){
-            RadioButton radioButton = new RadioButton(String.valueOf(i+1));
-            radioButton.setToggleGroup(toggleGroup);
-            hBox.setSpacing(30);
-            radioButton.setStyle("-fx-font-size: 14px;");
-            hBox.getChildren().add(radioButton);
-
             final int value = i + 1;
-            radioButton.setOnAction(event -> {
-                ((Profesional) userService.getAktualnyPouzivatel()).vymazSuperHodnotenie();
-                updateHondnotenie(imageEntity , value);
-                if(superTogglegroup!=null){
-                    superTogglegroup.selectToggle(null);
+            createButton(hBox, toggleGroup, String.valueOf(value), new EventHandler() {
+                @Override
+                public void handle() {
+                    ((Profesional) userService.getAktualnyPouzivatel()).vymazSuperHodnotenie();
+                    updateHondnotenie(imageEntity , value);
+                    if(superTogglegroup!=null){
+                        superTogglegroup.selectToggle(null);
+                    }
                 }
-            });
+            } );
         }
         int i;
         if((i=userService.getAktualnyPouzivatel().getIndexOhodnotenia(imageEntity)) >=0){
@@ -90,24 +88,19 @@ public class ProfesionalImageUI extends ImageUI{
 
     public ToggleGroup createSuperHodnotenie(HBox hBox, ImageEntity imageEntity){
         ToggleGroup toggleGroup = new ToggleGroup();
-
-        RadioButton upvoteButton = new RadioButton("Upvote");
-        upvoteButton.setToggleGroup(toggleGroup);
-        hBox.setSpacing(30);
-        upvoteButton.setStyle("-fx-font-size: 14px;");
-        upvoteButton.setOnAction(event -> {
-            superHodnotenie(toggleGroup, imageEntity, hodnotaSuperHodnotenia);
+        RadioButton upvoteButton = createButton(hBox, toggleGroup, "Upvote", new EventHandler() {
+            @Override
+            public void handle() {
+                superHodnotenie(toggleGroup, imageEntity, hodnotaSuperHodnotenia);
+            }
         });
-        hBox.getChildren().add(upvoteButton);
 
-        RadioButton downvoteButton =  new RadioButton("Downvote");
-        downvoteButton.setToggleGroup(toggleGroup);
-        hBox.setSpacing(30);
-        downvoteButton.setStyle("-fx-font-size: 14px;");
-        downvoteButton.setOnAction(event -> {
-            superHodnotenie(toggleGroup, imageEntity, -hodnotaSuperHodnotenia);
+        RadioButton downvoteButton = createButton(hBox, toggleGroup, "Downvote", new EventHandler() {
+            @Override
+            public void handle() {
+                superHodnotenie(toggleGroup, imageEntity, -hodnotaSuperHodnotenia);
+            }
         });
-        hBox.getChildren().add(downvoteButton);
 
         //if(((Profesional) userService.getAktualnyPouzivatel()).getSuperHodnotenie())
         Profesional profesional =((Profesional) userService.getAktualnyPouzivatel());
@@ -123,6 +116,17 @@ public class ProfesionalImageUI extends ImageUI{
         return toggleGroup;
     }
 
+    private RadioButton createButton(HBox hBox, ToggleGroup toggleGroup, String text, EventHandler eventHandler){
+        RadioButton button =  new RadioButton(text);
+        button.setToggleGroup(toggleGroup);
+        hBox.setSpacing(30);
+        button.setStyle("-fx-font-size: 14px;");
+        button.setOnAction(event -> {
+            eventHandler.handle();
+        });
+        hBox.getChildren().add(button);
+        return button;
+    }
     private void superHodnotenie(ToggleGroup toggleGroup, ImageEntity imageEntity, int hodnota){
         Uzivatel user = userService.getAktualnyPouzivatel();
         ((Profesional) user).setSuperHodnotenie(hodnota);
