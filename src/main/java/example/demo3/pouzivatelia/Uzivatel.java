@@ -61,6 +61,12 @@ public abstract class Uzivatel {
     public ArrayList<ImageEntity> getOhodnoteneObrasky() {
         return ohodnoteneObrasky;
     }
+    public void setHodnotenia(ArrayList<Integer> hodnotenia){
+        this.hodnotenia = hodnotenia;
+    }
+    public void setOhodnoteneObrasky(ArrayList<ImageEntity> ohodnoteneObrasky){
+        this.ohodnoteneObrasky = ohodnoteneObrasky;
+    }
 
     public void setMeno(String meno){this.meno=meno;}
     public void setRola(String rola){this.rola=rola;}
