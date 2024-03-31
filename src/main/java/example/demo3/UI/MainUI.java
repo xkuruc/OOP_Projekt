@@ -17,8 +17,6 @@ public class MainUI extends DataServiceManager {
         this.scene = new Scene(vbox, Color.GRAY);
     }
     public void MainUISetup(){
-        //ImageUI imageUI = new ImageUI(vbox);
-        //ImageUI imageUI = new ProfesionalImageUI(vbox);
         ImageUI imageUI;
         if(userService.getAktualnyPouzivatel() instanceof Profesional){
             imageUI = new ProfesionalImageUI(vbox);

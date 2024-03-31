@@ -3,13 +3,27 @@ package example.demo3.UI;
 import example.demo3.pouzivatelia.Factory;
 import example.demo3.pouzivatelia.Uzivatel;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+class Chybajuce_udaje extends Exception{
+    public Chybajuce_udaje(String message){
+        super(message);
+    }
+}
+class Chybajuce_meno extends Exception{
+    public Chybajuce_meno(String message){
+        super(message);
+    }
+}
+
+class Chybajuca_rola extends Exception{
+    public Chybajuca_rola(String message){
+        super(message);
+    }
+}
 
 public class LoginUI extends BaseUI{
     private VBox vbox;
@@ -41,7 +55,12 @@ public class LoginUI extends BaseUI{
 
 
     public void handle() {
-        logIn(stage);
+        try {
+            logIn(stage);
+        } catch (Chybajuce_meno | Chybajuca_rola e ) {
+            Label label = new Label(e.getMessage());
+            vbox.getChildren().add(label);
+        }
     }
 
     public void createRadioButton(){
@@ -73,12 +92,14 @@ public class LoginUI extends BaseUI{
         this.nameField = nameField;
     }
 
-    private void logIn(Stage stage){
+    private void logIn(Stage stage) throws Chybajuce_meno, Chybajuca_rola{
 
         //tu by som mohol zrobit že vyhodi vlastny error nejaky
-        if(nameField.getText().isEmpty() || toggleGroup.getSelectedToggle() == null){
-            return;
-        }else{
+        if(nameField.getText().isEmpty() ){
+            throw new Chybajuce_meno("Vloz meno !");
+        } else if (toggleGroup.getSelectedToggle() == null) {
+            throw new Chybajuca_rola("Vyber si rolu !");
+        } else{
             stage.close();
             Uzivatel uzivatel;
             if( (uzivatel = userService.exists(nameField.getText().toString())) == null){

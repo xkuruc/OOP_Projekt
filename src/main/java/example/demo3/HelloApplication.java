@@ -7,8 +7,6 @@ import javafx.stage.Stage;
 import javafx.scene.Group;
 import java.io.IOException;
 
-//inak pravdepodobne viem dať zobraziť aj nejaký gif kamo
-//tam možem skúsiť žeby som zobrazil nejaký gif namiesto obraska
 
 public class HelloApplication extends Application {
     @Override
