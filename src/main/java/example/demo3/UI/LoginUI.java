@@ -53,11 +53,10 @@ public class LoginUI extends BaseUI{
         stage.show();
     }
 
-
     public void handle() {
         try {
             logIn(stage);
-        } catch (Chybajuce_meno | Chybajuca_rola e ) {
+        } catch (Chybajuce_meno | Chybajuca_rola | Chybajuce_udaje e ) {
             Label label = new Label(e.getMessage());
             vbox.getChildren().add(label);
         }
@@ -92,10 +91,10 @@ public class LoginUI extends BaseUI{
         this.nameField = nameField;
     }
 
-    private void logIn(Stage stage) throws Chybajuce_meno, Chybajuca_rola{
-
-        //tu by som mohol zrobit že vyhodi vlastny error nejaky
-        if(nameField.getText().isEmpty() ){
+    private void logIn(Stage stage) throws Chybajuce_meno, Chybajuca_rola, Chybajuce_udaje{
+        if(nameField.getText().isEmpty() && toggleGroup.getSelectedToggle() == null){
+            throw new Chybajuce_udaje("Vypln vsetky udaje!");
+        } else if(nameField.getText().isEmpty() ){
             throw new Chybajuce_meno("Vloz meno !");
         } else if (toggleGroup.getSelectedToggle() == null) {
             throw new Chybajuca_rola("Vyber si rolu !");
