@@ -13,9 +13,9 @@ import javafx.stage.Stage;
 //problem je v tom kamo, že baseUI a hornaLista nemaju rovnaky vbox a scene,
 
 public class HornaLista extends BaseUI{
-    private VBox vbox;
-    private HBox hBox;
-    private ImageUI imageUI;
+    protected VBox vbox;
+    protected HBox hBox;
+    protected ImageUI imageUI;
 
     public HornaLista( VBox vbox, ImageUI imageUI){
         this.vbox = vbox;
@@ -25,24 +25,26 @@ public class HornaLista extends BaseUI{
 
     @Override
     protected void setupContent(Stage stage) {
-        addButton(new OpenImageButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
-        addButton(new LogOutButtonFactory(), new LogOutButtonEvent(userService, stage));
-        addButton(new TestButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
-        addButton(new RandomTestButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
-        addButton(new ZobrazitVyhodnotenieButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
+        setupFunkcie(vbox);
+
+        addButton(hBox,new TestButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
+        addButton(hBox, new RandomTestButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
+        addButton(hBox, new ZobrazitVyhodnotenieButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
 
         vbox.getChildren().add(hBox);
     }
-    private void addButton(ButtonFactory buttonFactory, EventHandler eventHandler) {
+    protected void addButton(HBox hBox, ButtonFactory buttonFactory, EventHandler eventHandler) {
         Button button = buttonFactory.createButton(eventHandler);
-        HBox.setMargin(button, new Insets(0, 10, 0, 10));
+        HBox.setMargin(button, new Insets(10, 10, 10, 10));
         hBox.getChildren().add(button);
     }
-
-
-    public void handle() {
-
+    protected void setupFunkcie(VBox vbox){
+        HBox hBox1 = new HBox();
+        addButton(hBox1, new LogOutButtonFactory(), new LogOutButtonEvent(userService, imageService, stage));
+        addButton(hBox1, new OpenImageButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
+        vbox.getChildren().add(hBox1);
     }
+
 
     /*@Override
     public void setupUI(Stage stage) {

@@ -27,7 +27,6 @@ public class Factory {
                 return new Factory.NovyFactory();
             case "Amater":
                 return new Factory.AmaterFactory();
-            // Add more cases as needed for additional user types
             default:
                 throw new IllegalArgumentException("Invalid user type: " + userType);
         }

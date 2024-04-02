@@ -16,7 +16,6 @@ public class HelloApplication extends Application {
         DataServiceManager.stage = stage;
         new LoginUI().setupUI(stage);
     }
-
     public static void main(String[] args) {
         launch(args);
     }

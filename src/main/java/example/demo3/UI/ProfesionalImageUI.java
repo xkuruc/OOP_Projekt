@@ -24,7 +24,7 @@ public class ProfesionalImageUI extends ImageUI{
         superTogglegroup = null;
     }
     private final int hodnotaSuperHodnotenia = 10;
-    ToggleGroup superTogglegroup;
+    private ToggleGroup superTogglegroup;
 
     public void setupContent(Stage stage) {
         stageSetup(stage, 800, 800);
@@ -75,6 +75,7 @@ public class ProfesionalImageUI extends ImageUI{
                     if(superTogglegroup!=null){
                         superTogglegroup.selectToggle(null);
                     }
+                    imageEntity.updateHodnotenie(userService.getAktualnyPouzivatel(), value);
                 }
             } );
         }
@@ -92,6 +93,7 @@ public class ProfesionalImageUI extends ImageUI{
             @Override
             public void handle() {
                 superHodnotenie(toggleGroup, imageEntity, hodnotaSuperHodnotenia);
+                //imageEntity.pridajHodnotenie(hodnotaSuperHodnotenia);
             }
         });
 
@@ -99,6 +101,7 @@ public class ProfesionalImageUI extends ImageUI{
             @Override
             public void handle() {
                 superHodnotenie(toggleGroup, imageEntity, -hodnotaSuperHodnotenia);
+                //imageEntity.pridajHodnotenie(-hodnotaSuperHodnotenia);
             }
         });
 
@@ -131,6 +134,7 @@ public class ProfesionalImageUI extends ImageUI{
         Uzivatel user = userService.getAktualnyPouzivatel();
         ((Profesional) user).setSuperHodnotenie(hodnota);
         ((Profesional) user).setSuperHodnotenieImage(imageEntity);
+
         user.setHodnotenia(new ArrayList<>());
         user.setOhodnoteneObrasky(new ArrayList<>());
         for(ToggleGroup toggleGroup1 : toggleGroups){
@@ -140,5 +144,8 @@ public class ProfesionalImageUI extends ImageUI{
             superTogglegroup.selectToggle(null);
         }
         this.superTogglegroup = toggleGroup;
+        for(ImageEntity image : imageService.returnObjectArray()){
+            image.updateHodnotenie(userService.getAktualnyPouzivatel(), 0);
+        }
     }
 }
