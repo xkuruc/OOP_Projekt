@@ -105,7 +105,6 @@ public class LoginUI extends BaseUI{
                 uzivatel = Factory.createUserFactory(((RadioButton) toggleGroup.getSelectedToggle()).getText())
                         .createUzivatel(nameField.getText().toString());
                 userService.PridajObjekt(uzivatel);
-                System.out.println(uzivatel.getMeno()+"!!!!!!!!");
             }
             //userService.updateData(uzivatel);
             userService.setAktualnyPouzivatel(uzivatel);

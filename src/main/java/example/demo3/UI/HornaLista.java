@@ -4,6 +4,7 @@ import example.demo3.button.*;
 import example.demo3.events.EventHandler;
 import example.demo3.events.LogOutButtonEvent;
 import example.demo3.events.OpenButtonEvent;
+import example.demo3.events.ZobrazitHodnotenieEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -29,7 +30,7 @@ public class HornaLista extends BaseUI{
 
         addButton(hBox,new TestButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
         addButton(hBox, new RandomTestButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
-        addButton(hBox, new ZobrazitVyhodnotenieButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
+        addButton(hBox, new ZobrazitVyhodnotenieButtonFactory(), new ZobrazitHodnotenieEvent(imageService, userService, imageUI));
 
         vbox.getChildren().add(hBox);
     }

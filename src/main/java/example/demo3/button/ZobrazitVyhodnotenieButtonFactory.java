@@ -8,13 +8,10 @@ public class ZobrazitVyhodnotenieButtonFactory extends ButtonFactory {
     public Button createButton(EventHandler eventHandler){
         Button VyhodnotenieButton = new Button(getTitle());
         VyhodnotenieButton.setOnAction(e -> {
-            ZobrazitVyhodnotenie();
+            eventHandler.handle();
         });
         root.getChildren().add(VyhodnotenieButton);
         return VyhodnotenieButton;
-    }
-    private void ZobrazitVyhodnotenie(){
-
     }
     protected String getTitle() {
         return "Zobrazit Vyhodnotenie";

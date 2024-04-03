@@ -31,6 +31,7 @@ public class NewImageUI extends ImageUI{
         vbox.getChildren().add(scrollPane);
     }
 
+
     @Override
     public void addImage(ImageEntity imageEntity) {
         Label label = createLabel(imageEntity.getAutor());

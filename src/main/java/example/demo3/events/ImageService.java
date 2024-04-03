@@ -1,5 +1,7 @@
 package example.demo3.events;
 
+import example.demo3.pouzivatelia.UserServiceData;
+import example.demo3.pouzivatelia.Uzivatel;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -11,32 +13,33 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//kamo, treba nejako prepojit aboco, treba proste ze jak vytvaras staticke objektu tuna, ze mena sa pridaju podla toho jake su su ulozene vo array vsetkych uzivatelov vo userservice
+
 public class ImageService extends ImageServiceData implements DataService<ImageEntity>{
+    private ArrayList<Uzivatel>  uzivatelArrayList;
     public ImageService(){
         destination = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "example/demo3/obrasky";
         imageEntityArrayList = new ArrayList<>();
-        VytvorStatickeObjekty();
     }
-
+    public void setUzivatelArrayList(ArrayList<Uzivatel> uzivatelArrayList){this.uzivatelArrayList = uzivatelArrayList;}
     //aj toto sa da teoreticky zapisat do jednej generickej metody, že vytvorStytickeObjekty(T)
     //a vytvori statických autorov, a statické obrázky
     public void VytvorStatickeObjekty(){
-        String[] autory = new String[]{"Marek", "Peto", "Filip"};
+        imageEntityArrayList = new ArrayList<>();
         try {
             Path[] files = Files.list(Paths.get(destination))
                     .filter(path -> Files.isRegularFile(path) && !path.getFileName().toString().startsWith("."))
                     .toArray(Path[]::new);
             String[] fileNames = Arrays.stream(files)
                     .map(Path::getFileName)
-                    .map(Path::toString) // Convert Path to String
+                    .map(Path::toString)
                     .toArray(String[]::new);
 
-            for(int i=0, j=0; i<files.length;i++,j++){
-                if(j>=autory.length){
+            for(int i=0, j=0; i<files.length; i++, j++){
+                if(j>= uzivatelArrayList.size()){
                     j=0;
                 }
-
-                ImageEntity image = new ImageEntity(autory[j], "", String.valueOf(fileNames[i]));
+                ImageEntity image = new ImageEntity(uzivatelArrayList.get(j).getMeno(), "", String.valueOf(fileNames[i]));
                 PridajObjekt(image);
             }
         } catch (IOException e) {
@@ -92,6 +95,4 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
             e.printStackTrace();
         }
     }
-
-
 }
