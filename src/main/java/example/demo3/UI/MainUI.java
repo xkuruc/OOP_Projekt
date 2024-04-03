@@ -30,7 +30,7 @@ public class MainUI extends DataServiceManager {
             imageUI = new AmaterImageUi(vbox);
             hornaLista = new HornaLista(vbox, imageUI);
         }else if(uzivatel instanceof Novy){
-            imageUI = new AmaterImageUi(vbox);
+            imageUI = new NewImageUI(vbox);
             hornaLista = new NewHornaLista(vbox, imageUI);
         }else{
             imageUI = new AmaterImageUi(vbox);
