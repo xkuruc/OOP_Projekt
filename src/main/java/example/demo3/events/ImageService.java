@@ -21,6 +21,9 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
         destination = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "example/demo3/obrasky";
         imageEntityArrayList = new ArrayList<>();
     }
+    public String getDestination(){
+        return destination;
+    }
     public void setUzivatelArrayList(ArrayList<Uzivatel> uzivatelArrayList){this.uzivatelArrayList = uzivatelArrayList;}
     //aj toto sa da teoreticky zapisat do jednej generickej metody, že vytvorStytickeObjekty(T)
     //a vytvori statických autorov, a statické obrázky
@@ -43,7 +46,7 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
                 PridajObjekt(image);
             }
         } catch (IOException e) {
-            System.err.println("Failed to list directory: " + destination);
+            System.err.println("Nieje vytvorený priecinok s obrazkami, prosím vytvorte priecinok s obrazkami na adrese  " + destination);
             e.printStackTrace();
         }
     }

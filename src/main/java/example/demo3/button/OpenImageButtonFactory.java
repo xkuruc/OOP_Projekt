@@ -9,7 +9,6 @@ public class OpenImageButtonFactory extends ButtonFactory{
         Button openButton = new Button(getTitle());
         openButton.setOnAction(e -> {
             eventHandler.handle();
-
         });
         root.getChildren().add(openButton);
         return openButton;

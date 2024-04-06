@@ -19,8 +19,10 @@ public class OpenButtonEvent implements EventHandler{
     public void handle() {
         ImageEntity imageEntity = new ImageEntity(userService.getAktualnyPouzivatel().getMeno(),"","");
         String path = imageService.SaveData(imageEntity, stage);
-        imageEntity.setUrl(path);
-        //imageUI.addImage("file:"+Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky", path).toString(), userService.getAktualnyPouzivatel().getMeno());
-        imageUI.addImage(imageEntity);
+        if(path!=null){
+            imageEntity.setUrl(path);
+            //imageUI.addImage("file:"+Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky", path).toString(), userService.getAktualnyPouzivatel().getMeno());
+            imageUI.addImage(imageEntity);
+        }
     }
 }

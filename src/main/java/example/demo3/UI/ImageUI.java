@@ -10,6 +10,11 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+//Dobre kamo, treba omnoho viac oddelit aplikacnu cast od pouzivatelskeho rozhrania
+//Ze ak sa rozhodnes ze UI zrobis v inak jazyku aby si co najmenej ovpplivnil funkcionalitu programu, idealne vobec
+//abo ze ked button zrobis inak, ze jeho funkcionalita sa nezmeni
+//ale je to kokot ten lang
+
 public abstract class ImageUI extends BaseUI{
     ArrayList<ToggleGroup> toggleGroups;
 
