@@ -70,7 +70,7 @@ public class ZobrazitVyhodnotenieUI extends BaseUI{
         ImageView imageView = createImageView(url, 100, 100);
         hBox.getChildren().add(imageView);
 
-        Label label = createHodnotenieLabel("Počet hlasov: ");
+        Label label = createHodnotenieLabel("Počet bodov: ");
         hBox.getChildren().add(label);
         labelArrayList.add(label);
 

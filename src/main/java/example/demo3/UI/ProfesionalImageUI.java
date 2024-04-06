@@ -22,9 +22,11 @@ public class ProfesionalImageUI extends ImageUI{
     public ProfesionalImageUI(VBox vbox) {
         super(vbox);
         superTogglegroup = null;
+        superImage = null;
     }
     private final int hodnotaSuperHodnotenia = 10;
     private ToggleGroup superTogglegroup;
+    private ImageEntity superImage;
 
     public void setupContent(Stage stage) {
         stageSetup(stage, 800, 800);
@@ -74,6 +76,7 @@ public class ProfesionalImageUI extends ImageUI{
                     updateHondnotenie(imageEntity , value);
                     if(superTogglegroup!=null){
                         superTogglegroup.selectToggle(null);
+                        superImage.updateHodnotenie(userService.getAktualnyPouzivatel(), 0);
                     }
                     imageEntity.updateHodnotenie(userService.getAktualnyPouzivatel(), value);
                 }
@@ -146,6 +149,10 @@ public class ProfesionalImageUI extends ImageUI{
         this.superTogglegroup = toggleGroup;
         for(ImageEntity image : imageService.returnObjectArray()){
             image.updateHodnotenie(userService.getAktualnyPouzivatel(), 0);
+            if(image.getUrl().equals(imageEntity.getUrl())){
+                imageEntity.updateHodnotenie(userService.getAktualnyPouzivatel(), hodnota);
+            }
         }
+        superImage = imageEntity;
     }
 }

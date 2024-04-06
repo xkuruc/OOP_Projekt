@@ -24,7 +24,8 @@ public class ZobrazitHodnotenieEvent  implements EventHandler{
         //this.zobrazitVyhodnotenieUI = new ZobrazitVyhodnotenieUI();
         this.stage = stage;
     }
-
+    //preto som to spravil takto aby som oddelil aplikacnu logiku od rozhrania
+    //aby logika nebola zavisla na rozhrani
     public int spocitajHodnotenie(ArrayList<Integer> hodnotenie){
         int vysledok = 0;
         for(Integer cislo : hodnotenie){

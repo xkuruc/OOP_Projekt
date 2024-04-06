@@ -17,14 +17,12 @@ public abstract class Uzivatel {
         for( ImageEntity imageEntity1 : getOhodnoteneObrasky() ){
             if(imageEntity1.getUrl().equals(imageEntity.getUrl())){
                 getHodnotenia().set(i, hodnotenie);
-                System.out.println(hodnotenie + "cojedopici!!!!");
                 return;
             }
             i++;
         }
         getOhodnoteneObrasky().add(imageEntity);
         getHodnotenia().add(hodnotenie);
-        System.out.println(hodnotenie + "!!!!");
     }
 
     public int getIndexOhodnotenia(ImageEntity imageEntity){
