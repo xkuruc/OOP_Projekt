@@ -25,7 +25,7 @@ public class HornaLista extends BaseUI{
     protected void setupContent(Stage stage) {
         setupFunkcie(vbox);
 
-        addButton(hBox, new TestButtonFactory(), new OpenButtonEvent(imageService, userService, imageUI, stage));
+        addButton(hBox, new VyhodnotitButtonFactory(), new VyhodnotitEvent(imageService, userService, stage));
         addButton(hBox, new RandomTestButtonFactory(), new RandomVyhodnotenieEvent(imageService, userService));
         addButton(hBox, new ZobrazitVyhodnotenieButtonFactory(), new ZobrazitHodnotenieEvent(imageService, userService, imageUI, stage));
 
