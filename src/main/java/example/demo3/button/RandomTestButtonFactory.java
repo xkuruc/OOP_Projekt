@@ -8,7 +8,7 @@ public class RandomTestButtonFactory extends ButtonFactory{
     public Button createButton(EventHandler eventHandler){
         Button RandomTestButton = new Button(getTitle());
         RandomTestButton.setOnAction(e -> {
-            RandomVyhodnotit();
+            eventHandler.handle();
         });
         root.getChildren().add(RandomTestButton);
         return RandomTestButton;

@@ -32,7 +32,7 @@ public class ProfesionalImageUI extends ImageUI{
         stageSetup(stage, 800, 800);
         setScrollPane(createScrollPane(800, 800));
 
-        for (ImageEntity imageEntity : imageService.returnObjectArray() ) {
+        /*for (ImageEntity imageEntity : imageService.returnObjectArray() ) {
             //URL imageUrl = getClass().getResource("./obrasky/" + imageEntity.getUrl());
             String imageUrl = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()
                     + "/example/demo3/obrasky", imageEntity.getUrl()).toString();
@@ -41,7 +41,8 @@ public class ProfesionalImageUI extends ImageUI{
             }else{
                 addImage(imageEntity);
             }
-        }
+        }*/
+        imageService.returnObjectArray().forEach(this::addImage); // method reference kamo
         vbox.getChildren().add(scrollPane);
     }
     public void addImage(ImageEntity imageEntity){
@@ -67,6 +68,7 @@ public class ProfesionalImageUI extends ImageUI{
     }
     public ToggleGroup createHodnotenie(HBox hBox, ImageEntity imageEntity){
         ToggleGroup toggleGroup = new ToggleGroup();
+
         for(int i=0; i<5; i++){
             final int value = i + 1;
             createButton(hBox, toggleGroup, String.valueOf(value), new EventHandler() {
@@ -130,6 +132,7 @@ public class ProfesionalImageUI extends ImageUI{
         button.setOnAction(event -> {
             eventHandler.handle();
         });
+
         hBox.getChildren().add(button);
         return button;
     }
