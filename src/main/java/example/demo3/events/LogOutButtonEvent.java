@@ -5,6 +5,10 @@ import example.demo3.pouzivatelia.Uzivatel;
 import javafx.scene.Group;
 import javafx.stage.Stage;
 
+/**
+ * Tu je definovany Event pre {@link example.demo3.button.LogOutButtonFactory}
+ * Vyuziva sa strategy pattern, cez rozhranie {@link EventHandler}
+ */
 public class LogOutButtonEvent implements EventHandler{
     private UserService userService;
     private ImageService imageService;
@@ -15,6 +19,12 @@ public class LogOutButtonEvent implements EventHandler{
         this.imageService = imageService;
     }
 
+    /**
+     * Metoda na odhlasenie
+     * <p>
+     *     Ulozi sa aktualny progres, a zavrie sa hlavne okno
+     *     Potom sa otvori nove mensie okno, ktore vyzve pouzivatela na nove prihlasenie
+     */
     @Override
     public void handle() {
         stage.close();
@@ -31,6 +41,5 @@ public class LogOutButtonEvent implements EventHandler{
                 i++;
             }
         }
-
     }
 }

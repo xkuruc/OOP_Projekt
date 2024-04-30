@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>ImageService.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #5c6370; font-style: italic;}
+.s3 { color: #89ca78;}
+.s4 { color: #d19a66;}
+.ln { color: #495162; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ImageService.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">example.demo3.events;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import <a href="../../../example/demo3/pouzivatelia/UserServiceData.java.html">example.demo3.pouzivatelia.UserServiceData</a></span><span class="s1">;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import <a href="../../../example/demo3/pouzivatelia/Uzivatel.java.html">example.demo3.pouzivatelia.Uzivatel</a></span><span class="s1">;</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">javafx.stage.FileChooser;</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">import </span><span class="s1">javafx.stage.Stage;</span>
+<a name="l7"><span class="ln">7    </span></a>
+<a name="l8"><span class="ln">8    </span></a><span class="s0">import </span><span class="s1">java.io.File;</span>
+<a name="l9"><span class="ln">9    </span></a><span class="s0">import </span><span class="s1">java.io.IOException;</span>
+<a name="l10"><span class="ln">10   </span></a><span class="s0">import </span><span class="s1">java.nio.file.Files;</span>
+<a name="l11"><span class="ln">11   </span></a><span class="s0">import </span><span class="s1">java.nio.file.Path;</span>
+<a name="l12"><span class="ln">12   </span></a><span class="s0">import </span><span class="s1">java.nio.file.Paths;</span>
+<a name="l13"><span class="ln">13   </span></a><span class="s0">import </span><span class="s1">java.util.ArrayList;</span>
+<a name="l14"><span class="ln">14   </span></a><span class="s0">import </span><span class="s1">java.util.Arrays;</span>
+<a name="l15"><span class="ln">15   </span></a>
+<a name="l16"><span class="ln">16   </span></a><span class="s2">//kamo, treba nejako prepojit aboco, treba proste ze jak vytvaras staticke objektu tuna, ze mena sa pridaju podla toho jake su su ulozene vo array vsetkych uzivatelov vo userservice</span>
+<a name="l17"><span class="ln">17   </span></a>
+<a name="l18"><span class="ln">18   </span></a><span class="s0">public class </span><span class="s1">ImageService </span><span class="s0">extends <a href="ImageServiceData.java.html">ImageServiceData</a> implements <a href="DataService.java.html">DataService&lt;ImageEntity&gt;</a></span><span class="s1">{</span>
+<a name="l19"><span class="ln">19   </span></a>    <span class="s0">private </span><span class="s1">ArrayList&lt;Uzivatel&gt;  uzivatelArrayList;</span>
+<a name="l20"><span class="ln">20   </span></a>    <span class="s0">public </span><span class="s1">ImageService(){</span>
+<a name="l21"><span class="ln">21   </span></a>        <span class="s1">destination = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + </span><span class="s3">&quot;example/demo3/obrasky&quot;</span><span class="s1">;</span>
+<a name="l22"><span class="ln">22   </span></a>        <span class="s1">imageEntityArrayList = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;();</span>
+<a name="l23"><span class="ln">23   </span></a>    <span class="s1">}</span>
+<a name="l24"><span class="ln">24   </span></a>    <span class="s0">public </span><span class="s1">String getDestination(){</span>
+<a name="l25"><span class="ln">25   </span></a>        <span class="s0">return </span><span class="s1">destination;</span>
+<a name="l26"><span class="ln">26   </span></a>    <span class="s1">}</span>
+<a name="l27"><span class="ln">27   </span></a>    <span class="s0">public void </span><span class="s1">setUzivatelArrayList(ArrayList&lt;Uzivatel&gt; uzivatelArrayList){</span><span class="s0">this</span><span class="s1">.uzivatelArrayList = uzivatelArrayList;}</span>
+<a name="l28"><span class="ln">28   </span></a>    <span class="s2">//aj toto sa da teoreticky zapisat do jednej generickej metody, že vytvorStytickeObjekty(T)</span>
+<a name="l29"><span class="ln">29   </span></a>    <span class="s2">//a vytvori statických autorov, a statické obrázky</span>
+<a name="l30"><span class="ln">30   </span></a>    <span class="s0">public void </span><span class="s1">VytvorStatickeObjekty(){</span>
+<a name="l31"><span class="ln">31   </span></a>        <span class="s1">imageEntityArrayList = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;();</span>
+<a name="l32"><span class="ln">32   </span></a>        <span class="s0">try </span><span class="s1">{</span>
+<a name="l33"><span class="ln">33   </span></a>            <span class="s1">Path[] files = Files.list(Paths.get(destination))</span>
+<a name="l34"><span class="ln">34   </span></a>                    <span class="s1">.filter(path -&gt; Files.isRegularFile(path) &amp;&amp; !path.getFileName().toString().startsWith(</span><span class="s3">&quot;.&quot;</span><span class="s1">))</span>
+<a name="l35"><span class="ln">35   </span></a>                    <span class="s1">.toArray(Path[]::</span><span class="s0">new</span><span class="s1">);</span>
+<a name="l36"><span class="ln">36   </span></a>            <span class="s1">String[] fileNames = Arrays.stream(files)</span>
+<a name="l37"><span class="ln">37   </span></a>                    <span class="s1">.map(Path::getFileName)</span>
+<a name="l38"><span class="ln">38   </span></a>                    <span class="s1">.map(Path::toString)</span>
+<a name="l39"><span class="ln">39   </span></a>                    <span class="s1">.toArray(String[]::</span><span class="s0">new</span><span class="s1">);</span>
+<a name="l40"><span class="ln">40   </span></a>
+<a name="l41"><span class="ln">41   </span></a>            <span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s4">0</span><span class="s1">, j=</span><span class="s4">0</span><span class="s1">; i&lt;files.length; i++, j++){</span>
+<a name="l42"><span class="ln">42   </span></a>                <span class="s0">if</span><span class="s1">(j&gt;= uzivatelArrayList.size()){</span>
+<a name="l43"><span class="ln">43   </span></a>                    <span class="s1">j=</span><span class="s4">0</span><span class="s1">;</span>
+<a name="l44"><span class="ln">44   </span></a>                <span class="s1">}</span>
+<a name="l45"><span class="ln">45   </span></a>                <a href="ImageEntity.java.html">ImageEntity</a> <span class="s1">image = </span><span class="s0">new <a href="ImageEntity.java.html">ImageEntity</a></span><span class="s1">(uzivatelArrayList.get(j).getMeno(), </span><span class="s3">&quot;&quot;</span><span class="s1">, String.valueOf(fileNames[i]));</span>
+<a name="l46"><span class="ln">46   </span></a>                <span class="s1">PridajObjekt(image);</span>
+<a name="l47"><span class="ln">47   </span></a>            <span class="s1">}</span>
+<a name="l48"><span class="ln">48   </span></a>        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException e) {</span>
+<a name="l49"><span class="ln">49   </span></a>            <span class="s1">System.err.println(</span><span class="s3">&quot;Nieje vytvorený priecinok s obrazkami, prosím vytvorte priecinok s obrazkami na adrese  &quot; </span><span class="s1">+ destination);</span>
+<a name="l50"><span class="ln">50   </span></a>            <span class="s1">e.printStackTrace();</span>
+<a name="l51"><span class="ln">51   </span></a>        <span class="s1">}</span>
+<a name="l52"><span class="ln">52   </span></a>    <span class="s1">}</span>
+<a name="l53"><span class="ln">53   </span></a>    <span class="s2">//to by sa mohlo a prepisat na ze pridajObjekt, bude to len genericke</span>
+<a name="l54"><span class="ln">54   </span></a>    <span class="s2">//a prida aj pouzivatela aj obrazok pohode ne</span>
+<a name="l55"><span class="ln">55   </span></a>
+<a name="l56"><span class="ln">56   </span></a>    <span class="s2">//som zistil ze dostanes error, ak pridas dva tie iste obrasky, s tym istym nazvom no</span>
+<a name="l57"><span class="ln">57   </span></a>    <span class="s0">public </span><span class="s1">String SaveData(<a href="ImageEntity.java.html">ImageEntity</a> data, Stage stage){</span>
+<a name="l58"><span class="ln">58   </span></a>        <span class="s0">try </span><span class="s1">{</span>
+<a name="l59"><span class="ln">59   </span></a>            <span class="s1">FileChooser fileChooser = </span><span class="s0">new </span><span class="s1">FileChooser();</span>
+<a name="l60"><span class="ln">60   </span></a>            <span class="s1">fileChooser.getExtensionFilters().add(</span><span class="s0">new </span><span class="s1">FileChooser.ExtensionFilter(</span><span class="s3">&quot;Image Files&quot;</span><span class="s1">, </span><span class="s3">&quot;*.png&quot;</span><span class="s1">, </span><span class="s3">&quot;*.jpg&quot;</span><span class="s1">, </span><span class="s3">&quot;*.gif&quot;</span><span class="s1">, </span><span class="s3">&quot;*.jpeg&quot;</span><span class="s1">));</span>
+<a name="l61"><span class="ln">61   </span></a>            <span class="s1">File file = fileChooser.showOpenDialog(stage);</span>
+<a name="l62"><span class="ln">62   </span></a>            <span class="s0">if </span><span class="s1">(file != </span><span class="s0">null</span><span class="s1">) {</span>
+<a name="l63"><span class="ln">63   </span></a>                <span class="s0">try </span><span class="s1">{</span>
+<a name="l64"><span class="ln">64   </span></a>                    <span class="s1">data.setUrl(file.getName());</span>
+<a name="l65"><span class="ln">65   </span></a>                    <span class="s1">Path destination = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + </span><span class="s3">&quot;/example/demo3/obrasky&quot;</span><span class="s1">, data.getUrl());</span>
+<a name="l66"><span class="ln">66   </span></a>                    <span class="s2">//String destination = &quot;file:&quot;+Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + &quot;/example/demo3/obrasky&quot;, data.getUrl());</span>
+<a name="l67"><span class="ln">67   </span></a>                    <span class="s1">Files.copy(file.toPath(), destination);</span>
+<a name="l68"><span class="ln">68   </span></a>                    <span class="s1">System.out.println(</span><span class="s3">&quot;Obrazok bol ulozeny&quot;</span><span class="s1">);</span>
+<a name="l69"><span class="ln">69   </span></a>                    <span class="s1">PridajObjekt(</span><span class="s0">new <a href="ImageEntity.java.html">ImageEntity</a></span><span class="s1">(data.getAutor(), </span><span class="s3">&quot;&quot;</span><span class="s1">,(file.getName())));</span>
+<a name="l70"><span class="ln">70   </span></a>                    <span class="s0">return </span><span class="s1">file.getName();</span>
+<a name="l71"><span class="ln">71   </span></a>                <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException ioException) {</span>
+<a name="l72"><span class="ln">72   </span></a>                    <span class="s1">System.out.println(</span><span class="s3">&quot;TUSOM &quot;</span><span class="s1">);</span>
+<a name="l73"><span class="ln">73   </span></a>                    <span class="s1">ioException.printStackTrace();</span>
+<a name="l74"><span class="ln">74   </span></a>                <span class="s1">}</span>
+<a name="l75"><span class="ln">75   </span></a>            <span class="s1">}</span>
+<a name="l76"><span class="ln">76   </span></a>        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(Exception e) {</span>
+<a name="l77"><span class="ln">77   </span></a>            <span class="s1">System.out.println(</span><span class="s3">&quot;Pruser&quot;</span><span class="s1">);</span>
+<a name="l78"><span class="ln">78   </span></a>        <span class="s1">}</span>
+<a name="l79"><span class="ln">79   </span></a>        <span class="s0">return null</span><span class="s1">;</span>
+<a name="l80"><span class="ln">80   </span></a>    <span class="s1">};</span>
+<a name="l81"><span class="ln">81   </span></a>
+<a name="l82"><span class="ln">82   </span></a>    <span class="s0">public void </span><span class="s1">ReturnData(){</span>
+<a name="l83"><span class="ln">83   </span></a>        <span class="s1">Path directory = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + </span><span class="s3">&quot;/example/demo3/obrasky&quot;</span><span class="s1">);</span>
+<a name="l84"><span class="ln">84   </span></a>        <span class="s0">try </span><span class="s1">{</span>
+<a name="l85"><span class="ln">85   </span></a>            <span class="s2">// Iterate through all files in the directory</span>
+<a name="l86"><span class="ln">86   </span></a>            <span class="s1">Files.list(directory)</span>
+<a name="l87"><span class="ln">87   </span></a>                    <span class="s1">.filter(Files::isRegularFile)</span>
+<a name="l88"><span class="ln">88   </span></a>                    <span class="s1">.forEach(file -&gt; {</span>
+<a name="l89"><span class="ln">89   </span></a>                        <span class="s0">try </span><span class="s1">{</span>
+<a name="l90"><span class="ln">90   </span></a>                            <span class="s1">System.out.println(</span><span class="s3">&quot;File: &quot; </span><span class="s1">+ file.getFileName());</span>
+<a name="l91"><span class="ln">91   </span></a>                        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(Exception e) {</span>
+<a name="l92"><span class="ln">92   </span></a>                            <span class="s1">System.err.println(</span><span class="s3">&quot;Failed to read file: &quot; </span><span class="s1">+ file);</span>
+<a name="l93"><span class="ln">93   </span></a>                            <span class="s1">e.printStackTrace();</span>
+<a name="l94"><span class="ln">94   </span></a>                        <span class="s1">}</span>
+<a name="l95"><span class="ln">95   </span></a>                    <span class="s1">});</span>
+<a name="l96"><span class="ln">96   </span></a>        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException e) {</span>
+<a name="l97"><span class="ln">97   </span></a>            <span class="s1">System.err.println(</span><span class="s3">&quot;Failed to list directory: &quot; </span><span class="s1">+ directory);</span>
+<a name="l98"><span class="ln">98   </span></a>            <span class="s1">e.printStackTrace();</span>
+<a name="l99"><span class="ln">99   </span></a>        <span class="s1">}</span>
+<a name="l100"><span class="ln">100  </span></a>    <span class="s1">}</span>
+<a name="l101"><span class="ln">101  </span></a><span class="s1">}</span>
+<a name="l102"><span class="ln">102  </span></a></pre>
+</body>
+</html>

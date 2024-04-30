@@ -5,6 +5,11 @@ import example.demo3.pouzivatelia.Uzivatel;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Toto je classa, reprezentujuca Obrazok vo mojom programe,
+ * Obsahuje vsetky potrebne informacie,
+ * Vsetky operacie pre pracu so touto classou su definovane vo classe {@link ImageService}
+ */
 public class ImageEntity {
     private String popis;
     private String autor;
@@ -40,5 +45,6 @@ public class ImageEntity {
         this.uzivateliaCoHodnotili.add(uzivatel);
         this.hodnotenieObrazka.add(hodnotenie);
     }
+
     public ArrayList<Uzivatel> getUzivateliaCoHodnotili(){return this.uzivateliaCoHodnotili;}
 }

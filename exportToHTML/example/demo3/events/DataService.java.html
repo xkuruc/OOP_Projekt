@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>DataService.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #5c6370; font-style: italic;}
+.ln { color: #495162; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DataService.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">example.demo3.events;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">javafx.stage.Stage;</span>
+<a name="l4"><span class="ln">4    </span></a>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">java.util.ArrayList;</span>
+<a name="l6"><span class="ln">6    </span></a>
+<a name="l7"><span class="ln">7    </span></a><span class="s0">public interface </span><span class="s1">DataService&lt;T&gt; {</span>
+<a name="l8"><span class="ln">8    </span></a>    <span class="s0">public </span><span class="s1">ArrayList&lt;T&gt; returnObjectArray();</span>
+<a name="l9"><span class="ln">9    </span></a>    <span class="s0">public </span><span class="s1">String SaveData(T data, Stage stage);</span>
+<a name="l10"><span class="ln">10   </span></a>    <span class="s0">public void </span><span class="s1">VytvorStatickeObjekty(); </span><span class="s2">//toto vytvori natvrdo nejakých začiatočných použivateľov a nejaké obrázky</span>
+<a name="l11"><span class="ln">11   </span></a>
+<a name="l12"><span class="ln">12   </span></a>    <span class="s2">/*public void ReadData(String database, String collection); 
+<a name="l13"><span class="ln">13   </span></a>    public ArrayList&lt;T&gt; ReturnData(); 
+<a name="l14"><span class="ln">14   </span></a> 
+<a name="l15"><span class="ln">15   </span></a>    //public T getElementById(String ID, String database, String collection); 
+<a name="l16"><span class="ln">16   </span></a> 
+<a name="l17"><span class="ln">17   </span></a>    public void UpdateData(String filterField, String filterValue, String updateField, String updateValue, String database, String collection); 
+<a name="l18"><span class="ln">18   </span></a> 
+<a name="l19"><span class="ln">19   </span></a>    //vrati celkovy pocet pouzivatelov, abo celkovy pocet obrazkov 
+<a name="l20"><span class="ln">20   </span></a>    default int ReturnNumberOfData(String databaza, String kolekcia){return 0;}; 
+<a name="l21"><span class="ln">21   </span></a>    //treba nejakú defaultnu metódu tu vymyslieť kamo dopici*/</span>
+<a name="l22"><span class="ln">22   </span></a>    <span class="s0">default public void </span><span class="s1">PridajObjekt(T o){</span>
+<a name="l23"><span class="ln">23   </span></a>        <span class="s1">returnObjectArray().add(o);</span>
+<a name="l24"><span class="ln">24   </span></a>    <span class="s1">}</span>
+<a name="l25"><span class="ln">25   </span></a><span class="s1">}</span>
+<a name="l26"><span class="ln">26   </span></a></pre>
+</body>
+</html>

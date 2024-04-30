@@ -2,7 +2,15 @@ package example.demo3.events;
 
 import example.demo3.UI.ImageUI;
 import javafx.stage.Stage;
-
+/**
+ * Metoda pre {@link  example.demo3.button.OpenImageButtonFactory}
+ * <p>
+ *     sluzi na nahratie noveho obrazka, a nasledne ulozenie obrazka, a pridanie obrazka na plochu
+ *     Vytvori sa tak nova polozka na hlasovanie. Prispieva to tak ku dynamickosti mojho programu
+ *     Vytvori sa novy {@link ImageEntity} objekt so vsetkymi potrebnymi informaciami.
+ *     - Ako autor sa nastavy aktualny pouzivatel
+ *     </p>
+ */
 public class OpenButtonEvent implements EventHandler{
     private ImageUI imageUI;
     private ImageService imageService;
@@ -15,6 +23,16 @@ public class OpenButtonEvent implements EventHandler{
         this.stage = stage;
     }
 
+    /**
+     *
+     *     sluzi na nahratie noveho obrazka, a nasledne ulozenie obrazka, a pridanie obrazka na plochu
+     *     Vytvori sa tak nova polozka na hlasovanie.
+     *     <p>
+     *     Prispieva to tak ku dynamickosti mojho programu
+     *     Vytvori sa novy {@link ImageEntity} objekt so vsetkymi potrebnymi informaciami.
+     *     - Ako autor sa nastavy aktualny pouzivatel
+     *     </p>
+     */
     @Override
     public void handle() {
         ImageEntity imageEntity = new ImageEntity(userService.getAktualnyPouzivatel().getMeno(),"","");

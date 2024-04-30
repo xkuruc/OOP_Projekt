@@ -15,6 +15,11 @@ import javafx.stage.Stage;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * toto je classa reprezentujuca male okno, ktore sa otvori po tuknuti na button Zobrazit Vyhodnotenie, zavola sa {@link example.demo3.events.ZobrazitHodnotenieEvent}
+ * V okne sa zobrazia vsetky obrzky reprezentovane pomocou {@link ImageEntity}, vsetky ich osobne udaje, a pocet hlasov ktore ziskali
+ * Zabezpecuje sa tak oddelenie aplikacnej logiky od pouzivatelskeho rozhrania 😎, lebo hlasy boly spocitane inde
+ */
 public class ZobrazitVyhodnotenieUI extends BaseUI{
     private VBox vBox1;
     private VBox content;

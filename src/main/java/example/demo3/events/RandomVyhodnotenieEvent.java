@@ -8,6 +8,14 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Metoda pre {@link  example.demo3.button.RandomTestButtonFactory}
+ * <p>
+ *     Sluzi na odsimulovanie hlasovania pre vsetkych vytvorenych pouzivatelov
+ *     Kazdy pouzivatel zahlasuje na nahodny pocet obrazkov, nahodnou hodnotou
+ *     DOLEZITE je poznamenat, ze toto hlasovanie je aj viditelne ak sa pouzivatel prihlasi, ze neni to len tak halabala hocijak !
+ * </p>
+ */
 public class RandomVyhodnotenieEvent implements EventHandler{
     private ImageService imageService;
     private UserService userService;
@@ -16,6 +24,14 @@ public class RandomVyhodnotenieEvent implements EventHandler{
         this.imageService = imageService;
         this.userService = userService;
     }
+    /**
+     * Sluzi na odsimulovanie hlasovania pre vsetkych vytvorenych pouzivatelov
+     * <p>
+     *    Kazdy pouzivatel zahlasuje na nahodny pocet obrazkov, nahodnou hodnotou.
+     *    Vyuziva sa multihreading, (lebo nemusime cakat na vyhodnotenie 1 obrazka aby sme mohli vyhodnotit dalsi, mozme vyhodnotit vsetky naraz)
+     *    DOLEZITE je poznamenat, ze toto hlasovanie je aj viditelne ak sa pouzivatel prihlasi, ze neni to len tak halabala hocijak !
+     * </p>
+     */
     @Override
     public void handle() {
 

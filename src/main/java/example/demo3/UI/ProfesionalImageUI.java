@@ -18,6 +18,10 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * toto je classa reprezentujuca pouzivatelske rozhranie pre uzivatela typu "Profesional" -pozri {@link example.demo3.pouzivatelia.Profesional}
+ * su mu zobrazene a pridelene vlastne privilegia specificke pre dany typ pouzivatela- napriklad je zobrazene super hodnotie, moznost pridavat fotky
+ */
 public class ProfesionalImageUI extends ImageUI{
     public ProfesionalImageUI(VBox vbox) {
         super(vbox);

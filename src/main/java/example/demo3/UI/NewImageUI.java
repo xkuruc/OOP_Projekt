@@ -9,7 +9,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
-
+/**
+ * toto je classa reprezentujuca pouzivatelske rozhranie pre uzivatela typu "Novy" -pozri {@link example.demo3.pouzivatelia.Novy}
+ * su mu zobrazene vlastne privilihia specificke pre dany typ pouzivatela
+ */
 public class NewImageUI extends ImageUI{
     public NewImageUI(VBox vbox) {
         super(vbox);

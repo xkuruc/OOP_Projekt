@@ -13,8 +13,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//kamo, treba nejako prepojit aboco, treba proste ze jak vytvaras staticke objektu tuna, ze mena sa pridaju podla toho jake su su ulozene vo array vsetkych uzivatelov vo userservice
-
+/**
+ * Toto je classa, v ktorej som definoval hlavne operacie s obrazkami, ako napriklad ulozenie obrazka, nacitanie obrazka...
+ * Classa pracuje so obrazkami, ktore su reprezentovane vo forme ImageEntity objektov -{@link ImageEntity}
+ * @see ImageEntity
+ */
 public class ImageService extends ImageServiceData implements DataService<ImageEntity>{
     private ArrayList<Uzivatel>  uzivatelArrayList;
     public ImageService(){
@@ -25,8 +28,13 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
         return destination;
     }
     public void setUzivatelArrayList(ArrayList<Uzivatel> uzivatelArrayList){this.uzivatelArrayList = uzivatelArrayList;}
-    //aj toto sa da teoreticky zapisat do jednej generickej metody, že vytvorStytickeObjekty(T)
-    //a vytvori statických autorov, a statické obrázky
+
+    /**
+     * Vytvori staticke objekty obrazkov. Vytvori ich tolko koľko ich je ulozenych vo priecinku "obrasky"
+     * <p>
+     *    To je potrebne preto ze ked pouzivatel sa prvy krat prihlasy aby tam uz boly nejake obrazky
+     *    Vytvori ich tak ze kazdemu vytvorenemu statickemu pouzivatelovi prida postupne jeden obrazok az pokym nevycerpame vsetky staticke obrazky
+     */
     public void VytvorStatickeObjekty(){
         imageEntityArrayList = new ArrayList<>();
         try {
@@ -50,10 +58,17 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
             e.printStackTrace();
         }
     }
-    //to by sa mohlo a prepisat na ze pridajObjekt, bude to len genericke
-    //a prida aj pouzivatela aj obrazok pohode ne
-
-    //som zistil ze dostanes error, ak pridas dva tie iste obrasky, s tym istym nazvom no
+    /**
+     * Ulozi dany obrazok do priecinka "obrasky"
+     * <p>
+     *     poznamka: Nemôžu byt ulozene dva obrazky s rovnakym menom
+     *
+     *
+     * @param data to je ImageEntity objekt reprezentujuci obrazok aj so danymi udajmi ako autor, adresa ...
+     * @see ImageEntity
+     * @param stage to je stage, to sluzi na to aby sme vedeli nacitat dany obrazok
+     * @return      Vrati adresu na ktoru bol obrazok ulozeny
+     */
     public String SaveData(ImageEntity data, Stage stage){
         try {
             FileChooser fileChooser = new FileChooser();
@@ -69,7 +84,6 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
                     PridajObjekt(new ImageEntity(data.getAutor(), "",(file.getName())));
                     return file.getName();
                 } catch (IOException ioException) {
-                    System.out.println("TUSOM ");
                     ioException.printStackTrace();
                 }
             }
@@ -78,7 +92,9 @@ public class ImageService extends ImageServiceData implements DataService<ImageE
         }
         return null;
     };
-
+    /**
+     * Sluzi len na vypísanie udajov. LEN NA KONTROLU
+     */
     public void ReturnData(){
         Path directory = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/example/demo3/obrasky");
         try {

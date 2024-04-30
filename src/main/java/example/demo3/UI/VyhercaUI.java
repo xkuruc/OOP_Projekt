@@ -12,6 +12,11 @@ import javafx.stage.Stage;
 
 import java.nio.file.Paths;
 
+/**
+ * toto je classa reprezentujuca male okno, ktore sa otvori po tuknuti na button Vyhodnotit, zavola sa {@link example.demo3.events.VyhodnotitEvent}
+ * Zabezpecuje sa tak oddelenie aplikacnej logiky od pouzivatelskeho rozhrania 😎
+ * V tom malom okne je zobrazeny najlepsi obrazok, vid {@link ImageEntity}
+ */
 public class VyhercaUI extends BaseUI{
     private VBox vBox1;
     private VBox content;

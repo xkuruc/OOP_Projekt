@@ -19,6 +19,11 @@ import java.nio.file.Paths;
 //aj by som mohol spravit ze createHodnotenie
     // a to by sa skladalo zo creae normalne hodnotenie a profresionalImageUI by si tam pridaj aj rovno ze create superHodnotenie
 //chapes ne
+
+/**
+ * toto je classa reprezentujuca pouzivatelske rozhranie pre uzivatela typu "Amater" -pozri {@link example.demo3.pouzivatelia.Amater}
+ * su mu zobrazene vlastne privilihia specificke pre dany typ pouzivatela
+ */
 public class AmaterImageUi extends ImageUI{
 
     public AmaterImageUi(VBox vBox){super(vBox);}

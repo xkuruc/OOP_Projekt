@@ -2,7 +2,14 @@ package example.demo3.pouzivatelia;
 
 import example.demo3.events.ImageEntity;
 
-
+/**
+ * Dalsia moznost Uzivatela
+ * <p>
+ *     tento typ uzivatela ma najviac privilegii
+ *     Moze pridavat lubovolny pocet fotiek, moze hlasovat fotky, ma pristup ku super hodnoteniu, ktore dava obrazku vyrazny naskok, toto super hodnotenie je vsak uplatitelne iba na jeden obrazok
+ *
+ * </p>
+ */
 public class Profesional extends Uzivatel{
     private int superHodnotenie;
     private ImageEntity superHodnotenieImage;

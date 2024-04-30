@@ -1,5 +1,6 @@
 package example.demo3.UI;
 
+import example.demo3.events.LogInEvent;
 import example.demo3.pouzivatelia.Factory;
 import example.demo3.pouzivatelia.Uzivatel;
 import javafx.scene.Scene;
@@ -8,31 +9,27 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-class Chybajuce_udaje extends Exception{
-    public Chybajuce_udaje(String message){
-        super(message);
-    }
-}
-class Chybajuce_meno extends Exception{
-    public Chybajuce_meno(String message){
-        super(message);
-    }
-}
-
 class Chybajuca_rola extends Exception{
     public Chybajuca_rola(String message){
         super(message);
     }
 }
 
+/**
+ * toto je classa reprezentujuca prihlasovacie rozhranie. Zavola {@link LogInEvent} a jeho metodu {@link LogInEvent#logIn(String, String)}
+ * Taktie pracuje aj so vlastnymi vynimkami, ktore su definovane vo {@link LogInEvent} a ich chybovu hlasku vypise
+ * aj tu sa dodrziava oddelenie aplikacnej logiky od pouzivatelskeho rozhrania
+ */
 public class LoginUI extends BaseUI{
     private VBox vbox;
     private Scene scene;
     private ToggleGroup toggleGroup;
     private TextField nameField;
+    private LogInEvent logInEvent;
     public LoginUI(){
         this.vbox = new VBox();
         this.scene = new Scene(vbox, Color.GRAY);
+        this.logInEvent = new LogInEvent(userService);
     }
 
     public VBox getVbox(){
@@ -47,7 +44,6 @@ public class LoginUI extends BaseUI{
         stage.setScene(getScene());
         createRadioButton();
         createNameInput();
-
         createLoginButton(stage);
 
         stage.show();
@@ -55,8 +51,14 @@ public class LoginUI extends BaseUI{
 
     public void handle() {
         try {
-            logIn(stage);
-        } catch (Chybajuce_meno | Chybajuca_rola | Chybajuce_udaje e ) {
+            if(toggleGroup.getSelectedToggle() == null) {
+                throw new Chybajuca_rola("Vyber si rolu !");
+            }
+            logInEvent.logIn(nameField.getText(), ((RadioButton) toggleGroup.getSelectedToggle()).getText());
+            stage.close();
+            MainUI mainUI = new MainUI();
+            mainUI.MainUISetup();
+        } catch (Exception e ) {
             Label label = new Label(e.getMessage());
             vbox.getChildren().add(label);
         }
@@ -80,7 +82,6 @@ public class LoginUI extends BaseUI{
 
         button.setOnAction(e -> {
             handle();
-            //logIn(stage);
         });
         getVbox().getChildren().add(button);
     }
@@ -91,28 +92,6 @@ public class LoginUI extends BaseUI{
         this.nameField = nameField;
     }
 
-    private void logIn(Stage stage) throws Chybajuce_meno, Chybajuca_rola, Chybajuce_udaje{
-        if(nameField.getText().isEmpty() && toggleGroup.getSelectedToggle() == null){
-            throw new Chybajuce_udaje("Vypln vsetky udaje!");
-        } else if(nameField.getText().isEmpty() ){
-            throw new Chybajuce_meno("Vloz meno !");
-        } else if (toggleGroup.getSelectedToggle() == null) {
-            throw new Chybajuca_rola("Vyber si rolu !");
-        } else{
-            stage.close();
-            Uzivatel uzivatel;
-            if( (uzivatel = userService.exists(nameField.getText().toString())) == null){
-                uzivatel = Factory.createUserFactory(((RadioButton) toggleGroup.getSelectedToggle()).getText())
-                        .createUzivatel(nameField.getText().toString());
-                userService.PridajObjekt(uzivatel);
-            }
-            //userService.updateData(uzivatel);
-            userService.setAktualnyPouzivatel(uzivatel);
-
-            MainUI mainUI = new MainUI();
-            mainUI.MainUISetup();
-        }
-    }
     @Override
     protected String getTitle() {
         return "LOGIN";

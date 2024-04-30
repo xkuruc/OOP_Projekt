@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"example.demo3"}];updateSearchResults();

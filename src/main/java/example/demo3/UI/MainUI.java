@@ -11,6 +11,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * toot je classa, v ktorej sa rozhodne ake rozhranie bude pouzivatelovi zobrazene podla aktualneho tgypu pouzivatela
+ * vyuziva sa vela polymorfizmu a strategy patternov
+ * Taktie sa urcuje aka lista sa zobrazi pouzivatelovi
+ */
 public class MainUI extends DataServiceManager {
     private VBox vbox;
     private Scene scene;

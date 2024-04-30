@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>VyhercaUI.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #d19a66;}
+.s3 { color: #89ca78;}
+.ln { color: #495162; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+VyhercaUI.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">example.demo3.UI;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import <a href="../../../example/demo3/events/ImageEntity.java.html">example.demo3.events.ImageEntity</a></span><span class="s1">;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import </span><span class="s1">javafx.geometry.Insets;</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">javafx.scene.Scene;</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">import </span><span class="s1">javafx.scene.control.Label;</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s0">import </span><span class="s1">javafx.scene.image.Image;</span>
+<a name="l8"><span class="ln">8    </span></a><span class="s0">import </span><span class="s1">javafx.scene.image.ImageView;</span>
+<a name="l9"><span class="ln">9    </span></a><span class="s0">import </span><span class="s1">javafx.scene.layout.HBox;</span>
+<a name="l10"><span class="ln">10   </span></a><span class="s0">import </span><span class="s1">javafx.scene.layout.VBox;</span>
+<a name="l11"><span class="ln">11   </span></a><span class="s0">import </span><span class="s1">javafx.stage.Stage;</span>
+<a name="l12"><span class="ln">12   </span></a>
+<a name="l13"><span class="ln">13   </span></a><span class="s0">import </span><span class="s1">java.nio.file.Paths;</span>
+<a name="l14"><span class="ln">14   </span></a>
+<a name="l15"><span class="ln">15   </span></a><span class="s0">public class </span><span class="s1">VyhercaUI </span><span class="s0">extends <a href="BaseUI.java.html">BaseUI</a></span><span class="s1">{</span>
+<a name="l16"><span class="ln">16   </span></a>    <span class="s0">private </span><span class="s1">VBox vBox1;</span>
+<a name="l17"><span class="ln">17   </span></a>    <span class="s0">private </span><span class="s1">VBox content;</span>
+<a name="l18"><span class="ln">18   </span></a>    <span class="s0">private </span><span class="s1">Scene scene;</span>
+<a name="l19"><span class="ln">19   </span></a>    <span class="s0">private <a href="../../../example/demo3/events/ImageEntity.java.html">ImageEntity</a> </span><span class="s1">vyhernyObrazok;</span>
+<a name="l20"><span class="ln">20   </span></a>    <span class="s0">private int </span><span class="s1">vyhercaPocetBodov;</span>
+<a name="l21"><span class="ln">21   </span></a>
+<a name="l22"><span class="ln">22   </span></a>    <span class="s0">public </span><span class="s1">VyhercaUI(<a href="../../../example/demo3/events/ImageEntity.java.html">ImageEntity</a> vyhernyObrazok, </span><span class="s0">int </span><span class="s1">vyhercaPocetBodov){</span>
+<a name="l23"><span class="ln">23   </span></a>        <span class="s0">this</span><span class="s1">.vBox1 = </span><span class="s0">new </span><span class="s1">VBox();</span>
+<a name="l24"><span class="ln">24   </span></a>        <span class="s0">this</span><span class="s1">.content = </span><span class="s0">new </span><span class="s1">VBox();</span>
+<a name="l25"><span class="ln">25   </span></a>        <span class="s0">this</span><span class="s1">.scene = </span><span class="s0">new </span><span class="s1">Scene(vBox1);</span>
+<a name="l26"><span class="ln">26   </span></a>        <span class="s0">this</span><span class="s1">.vyhernyObrazok = vyhernyObrazok;</span>
+<a name="l27"><span class="ln">27   </span></a>        <span class="s0">this</span><span class="s1">.vyhercaPocetBodov = vyhercaPocetBodov;</span>
+<a name="l28"><span class="ln">28   </span></a>    <span class="s1">}</span>
+<a name="l29"><span class="ln">29   </span></a>    <span class="s1">@Override</span>
+<a name="l30"><span class="ln">30   </span></a>    <span class="s0">protected void </span><span class="s1">setupContent(Stage stage) {</span>
+<a name="l31"><span class="ln">31   </span></a>        <span class="s1">Stage stage1 = createNewWindow(</span><span class="s2">500</span><span class="s1">, </span><span class="s2">500</span><span class="s1">);</span>
+<a name="l32"><span class="ln">32   </span></a>        <span class="s1">addImage(vyhernyObrazok);</span>
+<a name="l33"><span class="ln">33   </span></a>        <span class="s1">Label label = </span><span class="s0">new </span><span class="s1">Label(</span><span class="s3">&quot;Pocet bodov: &quot;</span><span class="s1">+ vyhercaPocetBodov);</span>
+<a name="l34"><span class="ln">34   </span></a>        <span class="s1">label.setStyle(</span><span class="s3">&quot;-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 10px 10px 0px 100px&quot;</span><span class="s1">);</span>
+<a name="l35"><span class="ln">35   </span></a>        <span class="s1">vBox1.getChildren().add(content);</span>
+<a name="l36"><span class="ln">36   </span></a>        <span class="s1">vBox1.getChildren().add(label);</span>
+<a name="l37"><span class="ln">37   </span></a>        <span class="s1">stage1.setScene(scene);</span>
+<a name="l38"><span class="ln">38   </span></a>        <span class="s1">stage1.show();</span>
+<a name="l39"><span class="ln">39   </span></a>    <span class="s1">}</span>
+<a name="l40"><span class="ln">40   </span></a>
+<a name="l41"><span class="ln">41   </span></a>    <span class="s0">private </span><span class="s1">Stage createNewWindow(</span><span class="s0">int </span><span class="s1">width, </span><span class="s0">int </span><span class="s1">height){</span>
+<a name="l42"><span class="ln">42   </span></a>        <span class="s1">Stage stage = </span><span class="s0">new </span><span class="s1">Stage();</span>
+<a name="l43"><span class="ln">43   </span></a>        <span class="s1">stageSetup(stage, width, height);</span>
+<a name="l44"><span class="ln">44   </span></a>        <span class="s0">return </span><span class="s1">stage;</span>
+<a name="l45"><span class="ln">45   </span></a>    <span class="s1">}</span>
+<a name="l46"><span class="ln">46   </span></a>    <span class="s0">private </span><span class="s1">ImageView createImageView(String imageUrl, </span><span class="s0">int </span><span class="s1">width, </span><span class="s0">int </span><span class="s1">height){</span>
+<a name="l47"><span class="ln">47   </span></a>        <span class="s1">Image image = </span><span class="s0">new </span><span class="s1">Image(imageUrl);</span>
+<a name="l48"><span class="ln">48   </span></a>        <span class="s1">ImageView imageView = </span><span class="s0">new </span><span class="s1">ImageView(image);</span>
+<a name="l49"><span class="ln">49   </span></a>        <span class="s1">imageView.setFitWidth(width);</span>
+<a name="l50"><span class="ln">50   </span></a>        <span class="s1">imageView.setFitHeight(height);</span>
+<a name="l51"><span class="ln">51   </span></a>        <span class="s0">return </span><span class="s1">imageView;</span>
+<a name="l52"><span class="ln">52   </span></a>    <span class="s1">}</span>
+<a name="l53"><span class="ln">53   </span></a>    <span class="s0">private </span><span class="s1">Label createLabel(String text){</span>
+<a name="l54"><span class="ln">54   </span></a>        <span class="s1">Label label = </span><span class="s0">new </span><span class="s1">Label(text);</span>
+<a name="l55"><span class="ln">55   </span></a>        <span class="s1">label.setStyle(</span><span class="s3">&quot;-fx-font-size: 40px; -fx-font-weight: bold; -fx-padding: 10px 10px 0px 200px&quot;</span><span class="s1">);</span>
+<a name="l56"><span class="ln">56   </span></a>        <span class="s0">return </span><span class="s1">label;</span>
+<a name="l57"><span class="ln">57   </span></a>    <span class="s1">}</span>
+<a name="l58"><span class="ln">58   </span></a>    <span class="s0">private void </span><span class="s1">addImage(<a href="../../../example/demo3/events/ImageEntity.java.html">ImageEntity</a> imageEntity){</span>
+<a name="l59"><span class="ln">59   </span></a>        <span class="s1">VBox vboxAkozeVsetko = </span><span class="s0">new </span><span class="s1">VBox();</span>
+<a name="l60"><span class="ln">60   </span></a>        <span class="s1">HBox hBox = </span><span class="s0">new </span><span class="s1">HBox();</span>
+<a name="l61"><span class="ln">61   </span></a>
+<a name="l62"><span class="ln">62   </span></a>        <span class="s1">vboxAkozeVsetko.getChildren().add(createLabel(imageEntity.getAutor()));</span>
+<a name="l63"><span class="ln">63   </span></a>
+<a name="l64"><span class="ln">64   </span></a>        <span class="s1">String url = </span><span class="s3">&quot;file:&quot;</span><span class="s1">+ Paths.get(imageService.getDestination(), imageEntity.getUrl());</span>
+<a name="l65"><span class="ln">65   </span></a>        <span class="s1">ImageView imageView = createImageView(url, </span><span class="s2">300</span><span class="s1">, </span><span class="s2">300</span><span class="s1">);</span>
+<a name="l66"><span class="ln">66   </span></a>        <span class="s1">hBox.getChildren().add(imageView);</span>
+<a name="l67"><span class="ln">67   </span></a>        <span class="s1">VBox.setMargin(hBox,  </span><span class="s0">new </span><span class="s1">Insets(</span><span class="s2">10</span><span class="s1">, </span><span class="s2">0</span><span class="s1">, </span><span class="s2">10</span><span class="s1">, </span><span class="s2">100</span><span class="s1">));</span>
+<a name="l68"><span class="ln">68   </span></a>
+<a name="l69"><span class="ln">69   </span></a>        <span class="s1">vboxAkozeVsetko.getChildren().add(hBox);</span>
+<a name="l70"><span class="ln">70   </span></a>        <span class="s1">content.getChildren().add(vboxAkozeVsetko);</span>
+<a name="l71"><span class="ln">71   </span></a>    <span class="s1">}</span>
+<a name="l72"><span class="ln">72   </span></a>
+<a name="l73"><span class="ln">73   </span></a>    <span class="s1">@Override</span>
+<a name="l74"><span class="ln">74   </span></a>    <span class="s0">protected </span><span class="s1">String getTitle() {</span>
+<a name="l75"><span class="ln">75   </span></a>        <span class="s0">return </span><span class="s3">&quot;VYHERCA&quot;</span><span class="s1">;</span>
+<a name="l76"><span class="ln">76   </span></a>    <span class="s1">}</span>
+<a name="l77"><span class="ln">77   </span></a><span class="s1">}</span>
+<a name="l78"><span class="ln">78   </span></a></pre>
+</body>
+</html>
