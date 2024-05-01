@@ -51,7 +51,7 @@ public class ZobrazitHodnotenieEvent  implements EventHandler{
      * <p>
      *     Kvoly umyslu oddelenia aplikacnej logiky od pouzivatelskeho rozhrania je nove okno vytvorene na inom mieste a hodnotenie je spocitane inde
      *     Vysldne hodnotenie je do UI vlozene cez metodu {@link ZobrazitVyhodnotenieUI#upravTextHodnoteniaObrazka(ImageEntity, int)} cim sa zaruci oddelenie aplikacnej logiky
-     *     </p>
+     * </p>
      */
     @Override
     public void handle() {

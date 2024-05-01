@@ -30,17 +30,21 @@ public class VyhodnotitEvent implements EventHandler{
      * @return vracia vyslednu hodnotu hodnoteni
      */
     private int spocitajHodnotenie(ArrayList<Integer> hodnotenie){
-        int vysledok = 0;
+        /*int vysledok = 0;
         for(Integer cislo : hodnotenie){
             vysledok += cislo;
         }
-        return vysledok;
+        return vysledok;*/
+        return hodnotenie.stream().mapToInt((Integer i) -> i.intValue()).sum(); // toto je lambda expression, co robi uplne to iste jak hore nad tymto
+                                                                                // ten stream sa použiva na operacie filter, map, reduce, sort ....
+        //ono by to bolo to iste jak
+        // return hodnotenie.stream().mapToInt(Integer::intValue).sum();        // a to uz je method reference
     }
     /**
      * Vyhodnoti vyhercu, vyherny obrázok a ten vrati
      * <p>
      *     pre kazdy obrazok zavola {@link #spocitajHodnotenie(ArrayList)} a urci vyhercu podla najvacsieho hodnotenia
-     *
+     * </p>
      * @return vracia vyherny obrazok
      */
     private ImageEntity vyhodnotVyhercu(){
